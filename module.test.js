@@ -9,21 +9,25 @@ describe('calculateAge Unit Test Suites', () => {
                 expect(calculateAge(loise)).toEqual(29)
         })
 
+        // Aucun argument n’a été envoyé
         it('should throw a "missing param p" error', () => {
                 expect(()=> calculateAge()).toThrow("missing param p")
         })
 
+        // Le format envoyé n'est pas un objet
         it('should throw an error when parameter is not an objet',() => {
                 expect(() => calculateAge("string")).toThrow("p is not an object")
                 expect(() => calculateAge(123)).toThrow("p is not an object")
-                expect(() => calculateAge(null)).toThrow("missing param p")
+                expect(() => calculateAge(null)).toThrow("p is not an object")
         })
 
+        // L'objet ne contient pas le champ birth
         it('should throw an error when object does not contain a birth field',()=> {
                 const withoutBirth = { name: Victoria };
                 expect(()=> calculateAge(withoutBirth)).toThrow("missing birth field")
         })
 
+        // Le champ birth n'est pas une date
         it('should throw an error when birth field is not a Date', () => {
                 const InvalidBirth = { birth: "not a date" };
                 const InvalidBirth2 = { birth: 123 };
@@ -33,6 +37,7 @@ describe('calculateAge Unit Test Suites', () => {
                 expect(() => calculateAge(InvalidBirth3)).toThrow("birth must be a valid Date")
         })
 
+        // La date envoyée est fausse
         it('should throw an error when birth is an invalid date', () => {
                 const invalidDate = { birth: new Date("invalid date") };
                 const invalidDate2 = { birth: new Date("30/40/2026") };
