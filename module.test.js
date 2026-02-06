@@ -34,12 +34,13 @@ describe('calculateAge Unit Test Suites', () => {
         })
 
         it('should return a correct age', () => {
-                const today = new Date('2026-02-06').getTime();
+                const today = new Date("02/06/2026").getTime();
                 jest.spyOn(Date, 'now').mockReturnValue(today);
 
                 expect(calculateAge({ birth: new Date("02/03/1997") })).toEqual(29);
                 expect(calculateAge({ birth: new Date("10/21/2018") })).toEqual(7);
                 expect(calculateAge({ birth: new Date("02/29/2020") })).toEqual(5);
+                expect(calculateAge({ birth: new Date("02/06/2020") })).toEqual(6);
         })
 
 
