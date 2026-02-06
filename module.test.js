@@ -4,7 +4,8 @@ import { calculateAge } from "./module.js"
 describe('calculateAge Unit Test Suites', () => {
         // Aucun argument n’a été envoyé
         it('should throw a "missing param p" error', () => {
-                expect(()=> calculateAge()).toThrow("missing param p")
+                expect(() => calculateAge()).toThrow("missing param p")
+                expect(() => calculateAge(null)).toThrow("missing param p")
         })
 
         // Le format envoyé n'est pas un objet
