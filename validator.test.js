@@ -1,8 +1,25 @@
 describe('validationAge Unit Test Suites', () => {
+
 	// Cas accepté : Age super à 18 ans
+	it('should accept person 18 or older', () => {
+		const today = new Date('02/06/2026').getTime();
+		jest.spyOn(Date, 'now').mockReturnValue(today);
 
+		const youngAdult = { birth: new Date("02/06/2008") };
+		const adult = { birth: new Date("02/03/1997") };
+		expect(() => validateAge(youngAdult)).toBeTruthy();
+		expect(()=> validateAge(adult)).toBeTruthy();
+	})
 	// Cas refusé : Age inférieur à 18 ans
+	it('should reject person under 18', () => {
+		const today = new Date('02/06/2026').getTime();
+		jest.spyOn(Date, 'now').mockReturnValue(today);
 
+		const minor = { birth: new Date("02/06/2009") };
+		const child = { birth: new Date("02/03/2020") };
+		expect(() => validateAge(minor)).toBeTruthy();
+		expect(()=> validateAge(child)).toBeTruthy();
+	})
 	// Cas d'erreur : gérés par les tests de calculAge qui est appelé par validationAge
 })
 
