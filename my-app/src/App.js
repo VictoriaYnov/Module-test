@@ -8,7 +8,7 @@ function App() {
   const [ageError, setAgeError] = useState('');
   const [ageValid, setAgeValid] = useState(false);
 
-  // Nom et prénoms
+  // Nom et prénom
   let [name, setName] = useState('');
   let [first, setfirst] = useState('');
   const [identityError, setIdentityError] = useState('');

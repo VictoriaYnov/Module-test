@@ -12,8 +12,7 @@ export function validateAge(p) {
 
    if (age < 18)
       throw new Error("Person must be at least 18 years old");
-
-    return true;
+   return true;
 }
 
 /**
@@ -68,7 +67,7 @@ export function validateCodePostal(p) {
       throw new Error("cp is not a postal code");
 
    if (!isDOMTOM0)
-        throw new Error("cp is not a postal code");
+      throw new Error("cp is not a postal code");
 
    return true;
 }
@@ -83,11 +82,11 @@ export function validateCodePostal(p) {
 export function validateEmail(p) {
     // Vérifier que le paramètre p existe
     if (!p)
-        throw new Error("Missing parameter: email is required");
+      throw new Error("Missing parameter: email is required");
 
     // Vérifier que p est un objet
     if (typeof p !== 'object')
-       throw new Error("Email must be an object");
+      throw new Error("Email must be an object");
 
    // Vérifier que le champ email existe
    if (!p.email)

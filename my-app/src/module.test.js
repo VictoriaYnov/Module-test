@@ -67,7 +67,6 @@ describe('calculateAge Unit Test Suites', () => {
       expect(() => calculateAge(invalidDate)).toThrow("age cannot exceed 150 years");
       expect(() => calculateAge(invalidDate2)).toThrow("age cannot exceed 150 years");
    })
-
 })
 
 

@@ -6,7 +6,7 @@ import { validateCity } from "./validator";
 
 describe('validateAge Unit Test Suites', () => {
 
-	// Cas accepté : Age super à 18 ans
+	// Cas accepté : Age superieur à 18 ans
 	it('should accept person 18 or older', () => {
 		const today = new Date('02/06/2026').getTime();
 		jest.spyOn(Date, 'now').mockReturnValue(today);
@@ -15,7 +15,8 @@ describe('validateAge Unit Test Suites', () => {
 		const adult = { birth: new Date("02/03/1997") };
 		expect(validateAge(youngAdult)).toBeTruthy();
 		expect(validateAge(adult)).toBeTruthy();
-	})
+   })
+
 	// Cas refusé : Age inférieur à 18 ans
 	it('should reject person under 18', () => {
 		const today = new Date('02/06/2026').getTime();
@@ -26,7 +27,7 @@ describe('validateAge Unit Test Suites', () => {
 		expect(() => validateAge(minor)).toThrow("Person must be at least 18 years old")
 		expect(() => validateAge(child)).toThrow("Person must be at least 18 years old")
 	})
-	// Cas sans paramètre ?
+
 	// Cas d'erreur : gérés par les tests de calculAge qui est appelé par validationAge
 })
 
@@ -47,14 +48,12 @@ describe('validateCodePostal Unit Test Suites', () => {
 	it('should throw an error when parameter is not an objetc', () => {
 		expect(() => validateCodePostal("string")).toThrow("c is not an object");
 		expect(() => validateCodePostal(123)).toThrow("c is not an object");
-
 	})
 
 	// Le paramètre p contient le champ cp
 	it('should throw an error when object does not contain a cp field',()=> {
 		expect(() => validateCodePostal({ name: "Victoria" })).toThrow("missing cp field")
 		expect(() => validateCodePostal({ cp: "" })).toThrow("missing cp field")
-
 	})
 
 	// Le champ cp est un string
@@ -258,6 +257,5 @@ describe('validateCity Unit Test Suites', () => {
 	it('should return an error if the city contains a dangerous caracter', () => {
 		expect(()=>validateCity({ city: "<script>"})).toThrow("parameters are invalid");
 	})
-
 })
 
