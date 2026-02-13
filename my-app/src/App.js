@@ -3,11 +3,6 @@ import { validateAge, validateCodePostal, validateIdentity , validateEmail, vali
 import './App.css';
 
 function App() {
-  let [count, setCount] = useState(0);
-  const clickOnMe = () => {
-    setCount(count+1);
-  }
-
   // Age
   let [birthDate, setBirthDate] = useState('');
   const [ageError, setAgeError] = useState('');
@@ -54,10 +49,6 @@ function App() {
   };
 
   return (<>
-    <div>
-      <button onClick={clickOnMe}>Click me</button>
-      <span data-testid="count">{count}</span>
-    </div>
 
     <div>
       Date de naissance
