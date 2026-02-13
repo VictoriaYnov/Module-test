@@ -1,5 +1,86 @@
 # Plan de Tests
 
+## Tests Unitaires
+
+### `calculateAge` (module.js)
+
+| Cas | Resultat attendu |
+|-----|-----------------|
+| Date de naissance valide  | Retourne l'age correct |
+| Aucun argument / null | Throw "missing param p" |
+| Parametre non-objet | Throw "p is not an object" |
+| Objet sans champ `birth` | Throw "missing birth field" |
+| Champ `birth` pas une Date | Throw "birth must be a valid Date" |
+| Date invalide | Throw "birth must be a valid Date" |
+| Date dans le futur | Throw "birth cannot be in the future" |
+| Date de plus de 150 ans | Throw "age cannot exceed 150 years" |
+
+### `validateAge` (validator.js)
+
+| Cas | Resultat attendu |
+|-----|-----------------|
+| Personne de 18 ans ou plus | Retourne `true` |
+| Personne de moins de 18 ans | Throw "Person must be at least 18 years old" |
+
+### `validateCodePostal` (validator.js)
+
+| Cas | Resultat attendu |
+|-----|-----------------|
+| CP valide metropole  | Retourne `true` |
+| CP valide DOM-TOM | Retourne `true` |
+| Aucun parametre / null | Throw "missing param p" |
+| Parametre non-objet | Throw "c is not an object" |
+| Objet sans champ `cp` / cp vide | Throw "missing cp field" |
+| Champ `cp` non-string | Throw "cp must be a string" |
+| Champ `cp` uniquement espaces | Throw "cp cannot be empty" |
+| CP avec des lettres  | Throw "cp is not only numbers" |
+| CP pas 5 chiffres | Throw "cp is not a code postal" |
+| CP hors France | Throw "cp is not a postal code" |
+
+### `validateEmail` (validator.js)
+
+| Cas | Resultat attendu |
+|-----|-----------------|
+| Email valide | Retourne `true` |
+| Aucun parametre / null / undefined | Throw "Missing parameter: email is required" |
+| Parametre non-objet  | Throw "Email must be an object" |
+| Objet sans champ `email` | Throw "Missing email field" |
+| Email vide | Throw "Email cannot be empty" |
+| Email sans @ | Throw "Invalid email format" |
+| Email sans domaine valide | Throw "Invalid email format" |
+| Email sans caractere avant/apres @ | Throw "Invalid email format" |
+| Email avec espaces | Throw "Invalid email format" |
+
+### `validateIdentity` (validator.js)
+
+| Cas | Resultat attendu |
+|-----|-----------------|
+| Nom et prenom valides  | Retourne `true` |
+| Nom/prenom avec tiret ou accent | Retourne `true` |
+| Aucun parametre | Throw "parameters are empty" |
+| Parametre non-objet | Throw "c is not an object" |
+| Champ `name` ou `first` manquant | Throw "missing parameter" |
+| Champ `name` ou `first` non-string | Throw "Parameters are invalid" |
+| Champ `name` ou `first` vide | Throw "Parameters cannot be empty" |
+| Nom/prenom avec chiffres | Throw "parameters are invalid" |
+| Nom/prenom avec caracteres speciaux | Throw "parameters are invalid" |
+| Injection XSS (`<script>`) | Throw "parameters are invalid" |
+
+### `validateCity` (validator.js)
+
+| Cas | Resultat attendu |
+|-----|-----------------|
+| Ville valide | Retourne `true` |
+| Ville avec tiret  | Retourne `true` |
+| Aucun parametre | Throw "parameters are empty" |
+| Parametre non-objet | Throw "c is not an object" |
+| Champ `city` non-string | Throw "Parameters are invalid" |
+| Champ `city` vide | Throw "Parameters cannot be empty" |
+| Ville avec chiffres ou underscore | Throw "parameters are invalid" |
+| Injection XSS (`<script>`) | Throw "parameters are invalid" |
+
+---
+
 ## Tests d'Integration
 
 ### Scenario : Utilisateur chaotique
