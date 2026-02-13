@@ -2,6 +2,7 @@ import { validateAge } from "./validator";
 import { validateCodePostal } from "./validator";
 import { validateEmail } from "./validator";
 import { validateIdentity } from "./validator";
+import { validateCity } from "./validator";
 
 describe('validateAge Unit Test Suites', () => {
 
@@ -228,47 +229,34 @@ describe('validateCity Unit Test Suites', () => {
 
 	// Le paramètre p n'est pas un objet
 	it('should throw an error when parameter is not an objet',() => {
-		expect(() => validateIdentity("string")).toThrow("c is not an object")
-		expect(() => validateIdentity(123)).toThrow("c is not an object")
+		expect(() => validateCity("string")).toThrow("c is not an object")
+		expect(() => validateCity(123)).toThrow("c is not an object")
 	})
 
 	// Le champ city n'est pas un string
 	it('should return an error if the city contains a number', () => {
-		expect(() => validateIdentity({ city: 112 })).toThrow("Parameters are invalid")
-		expect(()=>validateIdentity({ city: null })).toThrow("Parameters are invalid")
+		expect(() => validateCity({ city: 112 })).toThrow("Parameters are invalid")
 	})
 
-	// Cas erreur : Le noms et/ou le prénom sont vides
-	it('It should return an error if the first and last name are empty', () => {
-		expect(() => validateIdentity({ name: "  ", first: "Victoria" })).toThrow("Parameters cannot be empty");
-		expect(()=>validateIdentity({ name: "Martini  ", first: "   " })).toThrow("Parameters cannot be empty");
-		expect(()=>validateIdentity({ name: "  ", first: "   " })).toThrow("Parameters cannot be empty");
+	// Cas erreur : Le champs city est vide
+	it('It should return an error if the city is empty', () => {
+		expect(() => validateCity({ city: "  "})).toThrow("Parameters cannot be empty");
 	})
 
-	// Cas correct : Le nom et le prénom avec un tiret
-	it('should accept valid first and/or last names with a hyphen or an accent', () => {
-		expect(validateIdentity({ name: "Martini-Muscat", first: "Victoria-Maika" })).toBeTruthy();
-		expect(validateIdentity({ name: "Martinï", first: "Victoriaé" })).toBeTruthy();
-		expect(validateIdentity({ name: "Martini-Muscat", first: "Victoria" })).toBeTruthy();
-		expect(validateIdentity({ name: "Martinï", first: "Victoria" })).toBeTruthy();
-		expect(validateIdentity({ name: "Martini", first: "Victoria-Maika" })).toBeTruthy();
-		expect(validateIdentity({ name: "Martini", first: "Victoriaé" })).toBeTruthy();
-		expect(validateIdentity({ name: "Martini", first: "Victoriaé" })).toBeTruthy();
+	// Cas correct : La ville a un tiret
+	it('should accept valid city with a hyphen or an accent', () => {
+		expect(validateCity({ city: "Capbreton-Nice" })).toBeTruthy();
 	})
 
-	// Le nom et/ou le prénom contient un caractère spécial
-	it('should return an error if the name or surname contains a number', () => {
-		expect(()=>validateIdentity({ name: "Martini1", first: "2Victoria" })).toThrow("parameters are invalid");
-		expect(()=>validateIdentity({ name: "Martini1", first: "Victoria" })).toThrow("parameters are invalid");
-		expect(() => validateIdentity({ name: "Martini", first: "2Victoria" })).toThrow("parameters are invalid");
-		expect(()=>validateIdentity({ name: "Martini_Muscat", first: "Victoria_Maïka" })).toThrow("parameters are invalid");
+	// La ville contient un caractère spécial
+	it('should return an error if the city contains a number', () => {
+		expect(()=> validateCity({ city: "Capbreton1" })).toThrow("parameters are invalid");
+		expect(()=> validateCity({ city: "Capbreton_Nice" })).toThrow("parameters are invalid");
 	})
 
 	// Cas d'erreur : Injection XSS
-	it('should return an error if the name or surname contains a dangerous caracter', () => {
-		expect(()=>validateIdentity({ name: "<script>", first: "Victoria" })).toThrow("parameters are invalid");
-		expect(()=>validateIdentity({ name: "Martini", first: "<script>" })).toThrow("parameters are invalid");
-		expect(()=>validateIdentity({ name: "<script>", first: "<script>" })).toThrow("parameters are invalid");
+	it('should return an error if the city contains a dangerous caracter', () => {
+		expect(()=>validateCity({ city: "<script>"})).toThrow("parameters are invalid");
 	})
 
 })

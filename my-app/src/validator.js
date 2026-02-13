@@ -151,3 +151,41 @@ export function validateIdentity(p) {
 
    return true;
 }
+
+export function validateCity(p) {
+   // Vérifier que le paramètre p existe
+   if (!p)
+      throw new Error("parameters are empty");
+
+   // Vérifier que p est un objet
+   if (typeof p !== 'object' )
+      throw new Error("c is not an object");
+
+   // Vérifier que le champ city existe
+   if (!p.city)
+      throw new Error("missing parameter");
+
+   // Vérifier que city est un string
+   if (typeof p.city !== 'string')
+      throw new Error("Parameters are invalid");
+
+   // Vérifier que city n'est pas vide
+   if (p.city.trim() === '')
+      throw new Error("Parameters cannot be empty");
+
+   // Protection XSS
+   const dangerousChars = /[<>"&{}[\]()=;:`\\|]/;
+   if (dangerousChars.test(p.city))
+      throw new Error("parameters are invalid");
+
+   // Vérifier que le champ city ne contient pas de chiffres
+   if (/\d/.test(p.city))
+      throw new Error("parameters are invalid");
+
+   // Vérifier le format du champ city
+   const validNameRegex = /^[a-zA-ZÀ-ÿs-]+$/;
+   if (!validNameRegex.test(p.city))
+      throw new Error("parameters are invalid");
+
+   return true;
+}
