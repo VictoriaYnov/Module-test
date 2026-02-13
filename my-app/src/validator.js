@@ -60,13 +60,13 @@ export function validateCodePostal(p) {
 
    // Vérifier les codes postaux valides en France
    const isMetropole = dept2 >= 1 && dept2 <= 95;
+   const isDOMTOM0 = dept3 !== 985;
    const isDOMTOM1 = dept3 >= 971 && dept3 <= 978
    const isDOMTOM2 = dept3 >= 984 && dept3 <= 989;
 
-   if (!isMetropole &&!isDOMTOM0 && !isDOMTOM1 && !isDOMTOM2)
+   if (!isMetropole && !isDOMTOM1 && !isDOMTOM2)
       throw new Error("cp is not a postal code");
 
-   const isDOMTOM0 = dept3 !== 985;
    if (!isDOMTOM0)
         throw new Error("cp is not a postal code");
 

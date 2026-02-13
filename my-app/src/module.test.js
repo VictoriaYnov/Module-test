@@ -41,7 +41,9 @@ describe('calculateAge Unit Test Suites', () => {
    // La date envoyée est fausse
    it('should throw an error when birth is an invalid date', () => {
       const invalidDate = { birth: new Date("30/40/2026") };
-      expect(() => calculateAge(invalidDate)).toThrow("birth must be a valid Date")
+      const invalidDate2 = { birth: new Date("30/40/92026") };
+      expect(() => calculateAge(invalidDate)).toThrow("birth must be a valid Date");
+      expect(() => calculateAge(invalidDate2)).toThrow("birth must be a valid Date");
    })
 })
 

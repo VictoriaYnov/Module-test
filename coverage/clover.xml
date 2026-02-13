@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1770402589479" clover="3.2.0">
-  <project timestamp="1770402589479" name="All files">
+<coverage generated="1770970663791" clover="3.2.0">
+  <project timestamp="1770970663791" name="All files">
     <metrics statements="72" coveredstatements="72" conditionals="78" coveredconditionals="78" methods="5" coveredmethods="5" elements="155" coveredelements="155" complexity="0" loc="72" ncloc="72" packages="1" files="2" classes="2"/>
     <file name="module.js" path="/Users/victoria/Documents/Ynov/Tests/module-test/module.js">
       <metrics statements="11" coveredstatements="11" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
-      <line num="10" count="16" type="cond" truecount="2" falsecount="0"/>
+      <line num="10" count="13" type="cond" truecount="2" falsecount="0"/>
       <line num="11" count="2" type="stmt"/>
-      <line num="14" count="14" type="cond" truecount="2" falsecount="0"/>
+      <line num="14" count="11" type="cond" truecount="2" falsecount="0"/>
       <line num="15" count="2" type="stmt"/>
-      <line num="18" count="12" type="cond" truecount="2" falsecount="0"/>
+      <line num="18" count="9" type="cond" truecount="2" falsecount="0"/>
       <line num="19" count="1" type="stmt"/>
-      <line num="22" count="11" type="cond" truecount="4" falsecount="0"/>
+      <line num="22" count="8" type="cond" truecount="4" falsecount="0"/>
       <line num="23" count="3" type="stmt"/>
-      <line num="25" count="8" type="stmt"/>
-      <line num="26" count="8" type="stmt"/>
-      <line num="27" count="8" type="stmt"/>
+      <line num="25" count="5" type="stmt"/>
+      <line num="26" count="5" type="stmt"/>
+      <line num="27" count="5" type="stmt"/>
     </file>
     <file name="validator.js" path="/Users/victoria/Documents/Ynov/Tests/module-test/validator.js">
       <metrics statements="61" coveredstatements="61" conditionals="68" coveredconditionals="68" methods="4" coveredmethods="4"/>
