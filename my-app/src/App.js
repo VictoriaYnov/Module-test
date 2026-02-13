@@ -8,69 +8,50 @@ function App() {
     setCount(count+1);
   }
 
+  // Age
   let [birthDate, setBirthDate] = useState('');
   const [ageError, setAgeError] = useState('');
   const [ageValid, setAgeValid] = useState(false);
-  const handleValidateAge = () => {
-    try {
-      validateAge({ birth: new Date(birthDate) });
-      setAgeError('');
-    } catch (e) {
-      setAgeError(e.message);
-    }
-  };
 
+  // Nom et prénoms
   let [name, setName] = useState('');
   let [first, setfirst] = useState('');
   const [identityError, setIdentityError] = useState('');
   const [identityValid, setIdentityValid] = useState(false);
-  const handleValidateIdentity = () => {
-    try {
-      validateIdentity({ name: name, first: first });
-      setIdentityError('');
-    } catch (e) {
-      setIdentityError(e.message);
-    }
-  };
 
+  // Code postal
   let [cp, setCp] = useState('');
   const [cpError, setCpError] = useState('');
   const [cpValid, setCpValid] = useState(false);
-  const handleValidateCp = () => {
-    try {
-      validateCodePostal({ cp: cp});
-      setCpError('');
-    } catch (e) {
-      setCpError(e.message);
-    }
-  };
 
+  // Email
   let [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [emailValid, setEmailValid] = useState(false);
-  const handleValidateEmail = () => {
-    try {
-      validateEmail({ email: email});
-      setEmailError('');
-    } catch (e) {
-      setEmailError(e.message);
-    }
-  };
 
+  // Ville
   let [city, setCity] = useState('');
   const [cityError, setCityError] = useState('');
   const [cityValid, setCityValid] = useState(false);
-  const handleValidateCity = () => {
-    try {
-      validateCity({ city: city});
-      setCityError('');
-    } catch (e) {
-      setCityError(e.message);
-    }
+
+  const [toast, setToast] = useState('');
+  const handleSubmit = () => {
+    // Sauvegardez dans le localStorage
+    localStorage.setItem('formData', JSON.stringify({
+      birthDate, name, first, city, cp, email
+    }));
+
+    // Videz les champs
+    setBirthDate(''); setAgeError(''); setAgeValid(false);
+    setName(''); setfirst(''); setIdentityError(''); setIdentityValid(false);
+    setCp(''); setCpError(''); setCpValid(false);
+    setEmail(''); setEmailError(''); setEmailValid(false);
+    setCity(''); setCityError(''); setCityValid(false);
+
+    // Affichez un Toaster
+    setToast('Formulaire envoyé avec succès !');
+    setTimeout(() => setToast(''), 3000);
   };
-
-
-
 
   return (<>
     <div>
@@ -175,12 +156,17 @@ function App() {
       <button
         data-testid="submit"
         disabled={!(ageValid && identityValid && cityValid && cpValid && emailValid)}
+        onClick={handleSubmit}
       >
         Soumettre le formulaire
       </button>
     </div>
 
-
+    {toast && <div data-testid="toast" style={{
+      position: 'fixed', top: 20, right: 20,
+      backgroundColor: 'green', color: 'white',
+      padding: '15px 25px', borderRadius: '5px'
+    }}>{toast}</div>}
 
   </>)
 }
