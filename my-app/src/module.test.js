@@ -45,6 +45,29 @@ describe('calculateAge Unit Test Suites', () => {
       expect(() => calculateAge(invalidDate)).toThrow("birth must be a valid Date");
       expect(() => calculateAge(invalidDate2)).toThrow("birth must be a valid Date");
    })
+
+   // La date est dans le futur
+   it('should throw an error when birth is in the futur', () => {
+      const today = new Date("02/06/2026").getTime();
+      jest.spyOn(Date, 'now').mockReturnValue(today);
+
+      const invalidDate = { birth: new Date("03/03/3026") };
+      const tomorrow = { birth: new Date("07/02/2026") };
+      expect(() => calculateAge(invalidDate)).toThrow("birth cannot be in the future");
+      expect(() => calculateAge(tomorrow)).toThrow("birth cannot be in the future");
+   })
+
+   // La date est il y a plus de 150 ans
+   it('should return an error if the date is more than 105 years in the past', () => {
+      const today = new Date("02/06/2026").getTime();
+      jest.spyOn(Date, 'now').mockReturnValue(today);
+
+      const invalidDate = { birth: new Date("02/05/1875") };
+      const invalidDate2 = { birth: new Date("0026-02-05") };
+      expect(() => calculateAge(invalidDate)).toThrow("age cannot exceed 150 years");
+      expect(() => calculateAge(invalidDate2)).toThrow("age cannot exceed 150 years");
+   })
+
 })
 
 
