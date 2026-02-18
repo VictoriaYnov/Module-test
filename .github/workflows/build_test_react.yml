@@ -25,11 +25,11 @@ jobs:
           npm run build --if-present
           npm test
       - name: setup pages
-          id: pages
-          uses: actions/configure-pages@v3
+        id: pages
+        uses: actions/configure-pages@v3
       - name: Upload artifact
-          uses: actions/upload-pages-artifact@v3
-          with:
-            build
-            if-no-files-found: error
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+          if-no-files-found: error
 
