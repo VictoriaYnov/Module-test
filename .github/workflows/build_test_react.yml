@@ -30,5 +30,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./my-app/build
+          path: my-app/build
 
