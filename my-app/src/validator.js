@@ -96,8 +96,8 @@ export function validateEmail(p) {
    if (p.email.trim() === '')
       throw new Error("Email cannot be empty");
 
-   // Vérifier le format du champ email
-   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+   // Vérifier le format du champ email (lettres, chiffres, points, tirets, underscores uniquement)
+   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
    if (!emailRegex.test(p.email))
       throw new Error("Invalid email format");
 

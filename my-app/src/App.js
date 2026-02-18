@@ -2,6 +2,18 @@ import { useState } from 'react';
 import { validateAge, validateCodePostal, validateIdentity , validateEmail, validateCity} from './validator';
 import './App.css';
 
+/**
+ * Composant principal du formulaire d'inscription.
+ * Gère la saisie et la validation en temps réel des champs :
+ * date de naissance, nom, prénom, ville, code postal et email.
+ * Affiche des messages d'erreur en rouge pour chaque champ invalide.
+ * Le bouton de soumission est désactivé tant que tous les champs ne sont pas valides.
+ * À la soumission, les données sont sauvegardées dans le localStorage,
+ * les champs sont vidés et un toast de confirmation s'affiche pendant 3 secondes.
+ *
+ * @component
+ * @returns {JSX.Element} Le formulaire d'inscription avec validation
+ */
 function App() {
   // Age
   let [birthDate, setBirthDate] = useState('');
@@ -30,6 +42,12 @@ function App() {
   const [cityValid, setCityValid] = useState(false);
 
   const [toast, setToast] = useState('');
+
+  /**
+   * Gère la soumission du formulaire.
+   * Sauvegarde les données dans le localStorage, vide tous les champs
+   * et affiche un toast de confirmation pendant 3 secondes.
+   */
   const handleSubmit = () => {
     // Sauvegardez dans le localStorage
     localStorage.setItem('formData', JSON.stringify({

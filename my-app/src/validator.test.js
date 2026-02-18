@@ -95,7 +95,23 @@ describe('validateEmail Unit Test Suites', ()=>{
 		expect(validateEmail({ email: "victoria@exemple.com" })).toBeTruthy();
 		expect(validateEmail({ email: "alice.bob@gmail.com" })).toBeTruthy();
 		expect(validateEmail({ email: "marie_test@domain.fr" })).toBeTruthy();
-		expect(validateEmail({ email: "user+tag@example.co.uk" })).toBeTruthy();
+		expect(validateEmail({ email: "user-name@example.co.uk" })).toBeTruthy();
+	})
+
+	// Cas refusé : email avec des symboles interdits
+	it('should reject email with special symbols', () => {
+		expect(() => validateEmail({ email: "user+tag@example.com" })).toThrow("Invalid email format");
+		expect(() => validateEmail({ email: "user!name@example.com" })).toThrow("Invalid email format");
+		expect(() => validateEmail({ email: "user#name@example.com" })).toThrow("Invalid email format");
+		expect(() => validateEmail({ email: "user$name@example.com" })).toThrow("Invalid email format");
+		expect(() => validateEmail({ email: "user%name@example.com" })).toThrow("Invalid email format");
+		expect(() => validateEmail({ email: "user&name@example.com" })).toThrow("Invalid email format");
+		expect(() => validateEmail({ email: "user=name@example.com" })).toThrow("Invalid email format");
+		expect(() => validateEmail({ email: "user^name@example.com" })).toThrow("Invalid email format");
+		expect(() => validateEmail({ email: "user`name@example.com" })).toThrow("Invalid email format");
+		expect(() => validateEmail({ email: "user{name}@example.com" })).toThrow("Invalid email format");
+		expect(() => validateEmail({ email: "user|name@example.com" })).toThrow("Invalid email format");
+		expect(() => validateEmail({ email: "user~name@example.com" })).toThrow("Invalid email format");
 	})
 
 	// Aucun paramètre

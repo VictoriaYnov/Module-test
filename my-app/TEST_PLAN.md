@@ -50,6 +50,7 @@
 | Email sans domaine valide | Throw "Invalid email format" |
 | Email sans caractere avant/apres @ | Throw "Invalid email format" |
 | Email avec espaces | Throw "Invalid email format" |
+| Email avec symboles interdits (+!#$%&=^`{}~) | Throw "Invalid email format" |
 
 ### `validateIdentity` (validator.js)
 
@@ -131,6 +132,7 @@ Ce test simule un utilisateur reel qui fait des erreurs, corrige, refait des err
 | Cas limite | Comportement attendu |
 |------------|---------------------|
 | Email sans @ ("mauvaismail") | Erreur rouge immediate |
+| Email avec symboles ("user+tag@mail.com") | Erreur rouge immediate |
 | Nom avec chiffres ("Martini1") | Erreur rouge immediate |
 | Prenom avec caractere interdit ("Vic$toria") | Erreur rouge immediate |
 | Ville avec underscore ("Cap_breton") | Erreur rouge immediate |
