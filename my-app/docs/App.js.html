@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: App.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: App.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState } from 'react';
+import { validateAge, validateCodePostal, validateIdentity , validateEmail, validateCity} from './validator';
+import './App.css';
+
+/**
+ * Composant principal du formulaire d'inscription.
+ * Gère la saisie et la validation en temps réel des champs :
+ * date de naissance, nom, prénom, ville, code postal et email.
+ * Affiche des messages d'erreur en rouge pour chaque champ invalide.
+ * Le bouton de soumission est désactivé tant que tous les champs ne sont pas valides.
+ * À la soumission, les données sont sauvegardées dans le localStorage,
+ * les champs sont vidés et un toast de confirmation s'affiche pendant 3 secondes.
+ *
+ * @component
+ * @returns {JSX.Element} Le formulaire d'inscription avec validation
+ */
+function App() {
+  // Age
+  let [birthDate, setBirthDate] = useState('');
+  const [ageError, setAgeError] = useState('');
+  const [ageValid, setAgeValid] = useState(false);
+
+  // Nom et prénom
+  let [name, setName] = useState('');
+  let [first, setfirst] = useState('');
+  const [identityError, setIdentityError] = useState('');
+  const [identityValid, setIdentityValid] = useState(false);
+
+  // Code postal
+  let [cp, setCp] = useState('');
+  const [cpError, setCpError] = useState('');
+  const [cpValid, setCpValid] = useState(false);
+
+  // Email
+  let [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [emailValid, setEmailValid] = useState(false);
+
+  // Ville
+  let [city, setCity] = useState('');
+  const [cityError, setCityError] = useState('');
+  const [cityValid, setCityValid] = useState(false);
+
+  const [toast, setToast] = useState('');
+
+  /**
+   * Gère la soumission du formulaire.
+   * Sauvegarde les données dans le localStorage, vide tous les champs
+   * et affiche un toast de confirmation pendant 3 secondes.
+   */
+  const handleSubmit = () => {
+    // Sauvegardez dans le localStorage
+    localStorage.setItem('formData', JSON.stringify({
+      birthDate, name, first, city, cp, email
+    }));
+
+    // Videz les champs
+    setBirthDate(''); setAgeError(''); setAgeValid(false);
+    setName(''); setfirst(''); setIdentityError(''); setIdentityValid(false);
+    setCp(''); setCpError(''); setCpValid(false);
+    setEmail(''); setEmailError(''); setEmailValid(false);
+    setCity(''); setCityError(''); setCityValid(false);
+
+    // Affichez un Toaster
+    setToast('Formulaire envoyé avec succès !');
+    setTimeout(() => setToast(''), 3000);
+  };
+
+  return (&lt;>
+
+    &lt;div>
+      Date de naissance
+      &lt;input type="date" value={birthDate} onChange={(e) => {
+        setBirthDate(e.target.value);
+        try {
+          validateAge({ birth: new Date(e.target.value) });
+          setAgeError('');
+          setAgeValid(true);
+        } catch (err) {
+          setAgeError(err.message);
+          setAgeValid(false);
+        }
+      }} />
+      {ageError &amp;&amp; &lt;span data-testid="age-error" style={{color: 'red'}}>{ageError}&lt;/span>}
+    &lt;/div>
+
+    &lt;div>
+      Nom
+      &lt;input value={name} onChange={(e) => {
+        setName(e.target.value);
+        try {
+          validateIdentity({ name: e.target.value, first: first });
+          setIdentityError('');
+          setIdentityValid(true);
+        } catch (err) {
+          setIdentityError(err.message);
+          setIdentityValid(false);
+        }
+      }} />
+
+      Prénom
+      &lt;input value={first} onChange={(e) => {
+        setfirst(e.target.value);
+        try {
+          validateIdentity({ name: name, first: e.target.value });
+          setIdentityError('');
+          setIdentityValid(true);
+        } catch (err) {
+          setIdentityError(err.message);
+          setIdentityValid(false);
+        }
+      }} />
+      {identityError &amp;&amp; &lt;span data-testid="identity-error" style={{color: 'red'}}>{identityError}&lt;/span>}
+    &lt;/div>
+
+    &lt;div>
+      Ville
+      &lt;input value={city} onChange={(e) => {
+        setCity(e.target.value);
+        try {
+          validateCity({ city: e.target.value });
+          setCityError('');
+          setCityValid(true);
+        } catch (err) {
+          setCityError(err.message);
+          setCityValid(false);
+        }
+      }} />
+      {cityError &amp;&amp; &lt;span data-testid="city-error" style={{color: 'red'}}>{cityError}&lt;/span>}
+    &lt;/div>
+
+    &lt;div>
+      Code Postal
+      &lt;input value={cp} onChange={(e) => {
+        setCp(e.target.value);
+        try {
+          validateCodePostal({ cp: e.target.value });
+          setCpError('');
+          setCpValid(true);
+        } catch (err) {
+          setCpError(err.message);
+          setCpValid(false);
+        }
+        }} />
+      {cpError &amp;&amp; &lt;span data-testid="cp-error" style={{color: 'red'}}>{cpError}&lt;/span>}
+    &lt;/div>
+
+    &lt;div>
+      Email
+      &lt;input value={email} onChange={(e) => {
+        setEmail(e.target.value);
+        try {
+          validateEmail({ email: e.target.value });
+          setEmailError('');
+          setEmailValid(true);
+        } catch (err) {
+          setEmailError(err.message);
+          setEmailValid(false);
+        }
+    }} />
+      {emailError &amp;&amp; &lt;span data-testid="email-error" style={{color: 'red'}}>{emailError}&lt;/span>}
+    &lt;/div>
+
+    &lt;div>
+      &lt;button
+        data-testid="submit"
+        disabled={!(ageValid &amp;&amp; identityValid &amp;&amp; cityValid &amp;&amp; cpValid &amp;&amp; emailValid)}
+        onClick={handleSubmit}
+      >
+        Soumettre le formulaire
+      &lt;/button>
+    &lt;/div>
+
+    {toast &amp;&amp; &lt;div data-testid="toast" style={{
+      position: 'fixed', top: 20, right: 20,
+      backgroundColor: 'green', color: 'white',
+      padding: '15px 25px', borderRadius: '5px'
+    }}>{toast}&lt;/div>}
+
+  &lt;/>)
+}
+
+export default App;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#calculateAge">calculateAge</a></li><li><a href="global.html#validateAge">validateAge</a></li><li><a href="global.html#validateCodePostal">validateCodePostal</a></li><li><a href="global.html#validateEmail">validateEmail</a></li><li><a href="global.html#validateIdentity">validateIdentity</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Wed Feb 18 2026 12:42:02 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

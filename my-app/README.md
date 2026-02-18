@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Module Test - Formulaire d'inscription React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application React de formulaire d'inscription avec validation en temps reel des champs (date de naissance, nom, prenom, ville, code postal, email). Les donnees sont sauvegardees dans le localStorage a la soumission.
 
-## Available Scripts
+## Pre-requis
 
-In the project directory, you can run:
+- Node.js (v21 ou superieur)
+- npm
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+git clone <url-du-repo>
+cd my-app
+npm install
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Lancer l'application
 
-### `npm test`
+```bash
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+L'application s'ouvre sur [http://localhost:3000](http://localhost:3000).
 
-### `npm run build`
+## Lancer les tests
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm test
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Les tests s'executent avec coverage. Le rapport de couverture est genere dans le dossier `coverage/`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Structure du projet
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `src/App.js` - Composant principal du formulaire
+- `src/module.js` - Fonction de calcul d'age
+- `src/validator.js` - Fonctions de validation (age, email, code postal, identite, ville)
+- `src/App.test.js` - Tests d'integration (scenario utilisateur chaotique)
+- `src/module.test.js` - Tests unitaires de calculateAge
+- `src/validator.test.js` - Tests unitaires des validateurs
+- `TEST_PLAN.md` - Plan de test et documentation des cas testes
