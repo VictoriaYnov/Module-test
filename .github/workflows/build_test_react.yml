@@ -31,7 +31,10 @@ jobs:
         with:
           path: my-app/build
       - name: Upload coverage reports to Codecov
+
         uses: codecov/codecov-action@v3
+        with:
+          directory: my-app/coverage
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   deploy:
