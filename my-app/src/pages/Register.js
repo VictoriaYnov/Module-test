@@ -50,9 +50,13 @@ function Register() {
    */
   const handleSubmit = () => {
     // Sauvegardez dans le localStorage
-    localStorage.setItem('formData', JSON.stringify({
-      birthDate, name, first, city, cp, email
-    }));
+
+    // Récupère la liste des utilistaeurs
+    const existing = JSON.parse(localStorage.getItem('users')) || [];
+    // Ajoute le nouvel utilisateur
+    existing.push({ birthDate, name, first, city, cp, email });
+    // Sauvegarde la liste mise à jour
+    localStorage.setItem('users', JSON.stringify(existing));
 
     // Videz les champs
     setBirthDate(''); setAgeError(''); setAgeValid(false);

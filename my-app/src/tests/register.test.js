@@ -111,7 +111,9 @@ test('utilisateur chaotique ', async () => {
   });
 
   // 11. Les données sont dans le localStorage
-  const saved = JSON.parse(localStorage.getItem('formData'));
+  const users = JSON.parse(localStorage.getItem('users'));
+  expect(users).toHaveLength(1);
+  const saved = users[0];
   expect(saved.name).toBe('Martini');
   expect(saved.first).toBe('Victoria');
   expect(saved.email).toBe('victoria@example.com');
