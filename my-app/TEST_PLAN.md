@@ -84,10 +84,10 @@
 
 | Cas | Resultat attendu |
 |-----|-----------------|
-| Rendu avec liste vide | Titre, sous-titre et lien vers formulaire affiches |
+| Rendu avec liste vide | Titre, sous-titre, lien `/register` et compteur "0 utilisateur inscrit" affiches |
 | Rendu avec liste vide | Aucun utilisateur affiche |
-| Rendu avec un utilisateur | Prenom et nom affiches |
-| Rendu avec plusieurs utilisateurs | Tous les utilisateurs affiches |
+| Rendu avec un utilisateur | Prenom et nom affiches, compteur "1 utilisateur inscrit" |
+| Rendu avec plusieurs utilisateurs | Tous les utilisateurs affiches, compteur "N utilisateurs inscrits" (pluriel) |
 
 ---
 
@@ -144,6 +144,52 @@ L'application entiere (`App`) est rendue avec son routeur et son state global.
 - La mise a jour reactive de `Home` apres inscription (sans rechargement)
 - La persistance des donnees dans le localStorage
 - La coherence entre state React et localStorage
+
+---
+
+---
+
+## Tests End-to-End (Cypress)
+
+Les tests E2E sont dans `cypress/e2e/navigation.cy.js`. Ils s'executent dans un vrai navigateur contre l'application en cours d'execution (`npm start`). L'isolation du localStorage est desactivee (`testIsolation: false`) pour que les deux scenarios s'enchainent et partagent l'etat.
+
+### Scenario Nominal (Nominal Scenario)
+
+**Deroulement :**
+
+1. **Accueil** : visite de `/`, verification "0 utilisateur inscrit" et absence de "Victoria Martini"
+2. **Navigation** : clic sur "Acceder au formulaire" -> URL `/register`, bouton desactive
+3. **Inscription** : saisie de tous les champs valides (nom, prenom, ville, CP, email, date)
+4. **Soumission** : bouton active -> clic -> toast de confirmation visible
+5. **Retour** : clic sur "Retour a l'accueil" -> URL `/`
+6. **Persistance** : compteur "1 utilisateur inscrit" et "Victoria Martini" visibles dans la liste
+
+**Ce scenario verifie :**
+
+- La navigation reelle entre pages via react-router
+- La validation et la soumission d'un formulaire complet
+- L'affichage du toast de confirmation
+- La persistance des donnees dans le localStorage apres soumission
+- La mise a jour du compteur et de la liste sur la page d'accueil
+
+### Scenario d'Erreur (Error Scenario)
+
+Enchaîne directement apres le Scenario Nominal (1 utilisateur deja inscrit en localStorage).
+
+**Deroulement :**
+
+1. **Accueil** : visite de `/`, verification "1 utilisateur inscrit" et presence de "Victoria Martini"
+2. **Navigation** : clic sur "Acceder au formulaire" -> URL `/register`
+3. **Tentative invalide** : saisie de tous les champs valides SAUF l'email (`alice@example`, sans TLD valide)
+4. **Verification erreur** : message d'erreur email visible, bouton "Soumettre" reste desactive
+5. **Retour** : clic sur "Retour a l'accueil" sans soumettre
+6. **Liste inchangee** : compteur toujours "1 utilisateur inscrit", "Victoria Martini" presente, "Alice Bob" absente
+
+**Ce scenario verifie :**
+
+- L'affichage du message d'erreur en temps reel pour un email invalide
+- Le blocage de la soumission en cas de champ invalide
+- L'absence d'effet de bord : un formulaire invalide non soumis ne modifie pas la liste
 
 ---
 
