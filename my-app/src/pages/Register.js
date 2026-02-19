@@ -23,7 +23,7 @@ function Register({ addUser }) {
 
   // Nom et prénom
   let [name, setName] = useState('');
-  let [first, setfirst] = useState('');
+  let [first, setFirst] = useState('');
   const [identityError, setIdentityError] = useState('');
   const [identityValid, setIdentityValid] = useState(false);
 
@@ -55,7 +55,7 @@ function Register({ addUser }) {
 
     // Videz les champs
     setBirthDate(''); setAgeError(''); setAgeValid(false);
-    setName(''); setfirst(''); setIdentityError(''); setIdentityValid(false);
+    setName(''); setFirst(''); setIdentityError(''); setIdentityValid(false);
     setCp(''); setCpError(''); setCpValid(false);
     setEmail(''); setEmailError(''); setEmailValid(false);
     setCity(''); setCityError(''); setCityValid(false);
@@ -99,7 +99,7 @@ function Register({ addUser }) {
 
       Prénom
       <input data-testid="input-first" data-cy="input-first" value={first} onChange={(e) => {
-        setfirst(e.target.value);
+        setFirst(e.target.value);
         try {
           validateIdentity({ name: name, first: e.target.value });
           setIdentityError('');

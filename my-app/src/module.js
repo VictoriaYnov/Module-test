@@ -1,8 +1,14 @@
 /**
- * Caluclate a person's age in years.
+ * Calculate a person's age in years.
  *
  * @param {Object} p An object representing a person, implementing a birth Date parameter
  * @returns {number} The age in years of p.
+ * @throws {Error} "missing param p" - if p is null or undefined
+ * @throws {Error} "p is not an object" - if p is not an object
+ * @throws {Error} "missing birth field" - if p.birth is missing
+ * @throws {Error} "birth must be a valid Date" - if p.birth is not a valid Date
+ * @throws {Error} "birth cannot be in the future" - if p.birth is in the future
+ * @throws {Error} "age cannot exceed 150 years" - if age exceeds 150 years
  */
 
 export function calculateAge(p) {

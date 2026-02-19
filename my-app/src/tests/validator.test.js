@@ -168,7 +168,7 @@ describe('validateEmail Unit Test Suites', ()=>{
 describe('validateIdentity Unit Test Suites', () => {
 	// Cas correct : Le Nom et le prénom sont valides sans acccent ni tiret
 	it('should accept valid first and last names', () => {
-		expect(()=>validateIdentity({ name: "Martini", first: "Victoria" })).toBeTruthy();
+		expect(validateIdentity({ name: "Martini", first: "Victoria" })).toBe(true);
 	})
 
 	// Le paramètre p est vide
@@ -234,7 +234,7 @@ describe('validateIdentity Unit Test Suites', () => {
 describe('validateCity Unit Test Suites', () => {
 	// Cas correct : La ville est valide sans acccent ni tiret
 	it('should accept valid city', () => {
-		expect(()=>validateCity({ city: "Capbreton" })).toBeTruthy();
+		expect(validateCity({ city: "Capbreton" })).toBe(true);
 	})
 
 	// Le paramètre p est vide
@@ -246,6 +246,11 @@ describe('validateCity Unit Test Suites', () => {
 	it('should throw an error when parameter is not an objet',() => {
 		expect(() => validateCity("string")).toThrow("c is not an object")
 		expect(() => validateCity(123)).toThrow("c is not an object")
+	})
+
+	// Le champ city est manquant
+	it('should return an error if the city field is missing', () => {
+		expect(() => validateCity({})).toThrow("missing parameter");
 	})
 
 	// Le champ city n'est pas un string

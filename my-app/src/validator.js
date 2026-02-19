@@ -75,7 +75,7 @@ export function validateCodePostal(p) {
 /**
  * Validate email format
  *
- * @param {object} p - An object representing a person, implementing an email parameter
+ * @param {Object} p - An object representing a person, implementing an email parameter
  * @returns {boolean} True if valid
  * @throws {Error} If validation fails
  */

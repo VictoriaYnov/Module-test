@@ -75,6 +75,7 @@
 | Ville avec tiret  | Retourne `true` |
 | Aucun parametre | Throw "parameters are empty" |
 | Parametre non-objet | Throw "c is not an object" |
+| Objet sans champ `city` | Throw "missing parameter" |
 | Champ `city` non-string | Throw "Parameters are invalid" |
 | Champ `city` vide | Throw "Parameters cannot be empty" |
 | Ville avec chiffres ou underscore | Throw "parameters are invalid" |
@@ -84,8 +85,7 @@
 
 | Cas | Resultat attendu |
 |-----|-----------------|
-| Rendu avec liste vide | Titre, sous-titre, lien `/register` et compteur "0 utilisateur inscrit" affiches |
-| Rendu avec liste vide | Aucun utilisateur affiche |
+| Rendu avec liste vide | Titre, sous-titre, lien `/register`, compteur "0 utilisateur inscrit" affiches et aucun utilisateur affiche |
 | Rendu avec un utilisateur | Prenom et nom affiches, compteur "1 utilisateur inscrit" |
 | Rendu avec plusieurs utilisateurs | Tous les utilisateurs affiches, compteur "N utilisateurs inscrits" (pluriel) |
 

@@ -58,7 +58,7 @@ describe('calculateAge Unit Test Suites', () => {
    })
 
    // La date est il y a plus de 150 ans
-   it('should return an error if the date is more than 105 years in the past', () => {
+   it('should return an error if the date is more than 150 years in the past', () => {
       const today = new Date("02/06/2026").getTime();
       jest.spyOn(Date, 'now').mockReturnValue(today);
 
