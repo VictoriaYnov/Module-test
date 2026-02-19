@@ -1,11 +1,11 @@
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import App from './App';
+import Register from '../pages/Register';
 
 test('utilisateur chaotique ', async () => {
   // Scénario décrit dans TEST_PLAN.md
   jest.useFakeTimers();
-  render(<App />);
+  render(<Register />);
 
   // 1. Le bouton "Soumettre" est désactive au demarrage
   const submitBtn = screen.getByTestId('submit');

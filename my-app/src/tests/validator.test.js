@@ -1,8 +1,8 @@
-import { validateAge } from "./validator";
-import { validateCodePostal } from "./validator";
-import { validateEmail } from "./validator";
-import { validateIdentity } from "./validator";
-import { validateCity } from "./validator";
+import { validateAge } from "../validator"
+import { validateCodePostal } from "../validator";
+import { validateEmail } from "../validator";
+import { validateIdentity } from "../validator";
+import { validateCity } from "../validator";
 
 describe('validateAge Unit Test Suites', () => {
 

@@ -1,4 +1,4 @@
-import { calculateAge } from "./module.js"
+import { calculateAge } from "../module"
 
 describe('calculateAge Unit Test Suites', () => {
    // Cas en succès
