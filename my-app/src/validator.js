@@ -151,6 +151,15 @@ export function validateIdentity(p) {
    return true;
 }
 
+/**
+ * Validate a city name
+ * Accepts letters (with accents) and hyphens
+ * Rejects numbers, special characters and XSS injections
+ *
+ * @param {Object} p - Object with city field
+ * @returns {boolean} True if valid
+ * @throws {Error} If validation fails
+ */
 export function validateCity(p) {
    // Vérifier que le paramètre p existe
    if (!p)
