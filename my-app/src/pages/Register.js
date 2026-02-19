@@ -69,7 +69,7 @@ function Register({ addUser }) {
 
     <div>
       Date de naissance
-      <input data-testid="input-birthdate" type="date" value={birthDate} onChange={(e) => {
+      <input data-testid="input-birthdate" data-cy="input-birthdate" type="date" value={birthDate} onChange={(e) => {
         setBirthDate(e.target.value);
         try {
           validateAge({ birth: new Date(e.target.value) });
@@ -80,12 +80,12 @@ function Register({ addUser }) {
           setAgeValid(false);
         }
       }} />
-      {ageError && <span data-testid="age-error" style={{color: 'red'}}>{ageError}</span>}
+      {ageError && <span data-testid="age-error" data-cy="age-error" style={{color: 'red'}}>{ageError}</span>}
     </div>
 
     <div>
       Nom
-      <input data-testid="input-name" value={name} onChange={(e) => {
+      <input data-testid="input-name" data-cy="input-name" value={name} onChange={(e) => {
         setName(e.target.value);
         try {
           validateIdentity({ name: e.target.value, first: first });
@@ -98,7 +98,7 @@ function Register({ addUser }) {
       }} />
 
       Prénom
-      <input data-testid="input-first" value={first} onChange={(e) => {
+      <input data-testid="input-first" data-cy="input-first" value={first} onChange={(e) => {
         setfirst(e.target.value);
         try {
           validateIdentity({ name: name, first: e.target.value });
@@ -109,12 +109,12 @@ function Register({ addUser }) {
           setIdentityValid(false);
         }
       }} />
-      {identityError && <span data-testid="identity-error" style={{color: 'red'}}>{identityError}</span>}
+      {identityError && <span data-testid="identity-error" data-cy="identity-error" style={{color: 'red'}}>{identityError}</span>}
     </div>
 
     <div>
       Ville
-      <input data-testid="input-city" value={city} onChange={(e) => {
+      <input data-testid="input-city" data-cy="input-city" value={city} onChange={(e) => {
         setCity(e.target.value);
         try {
           validateCity({ city: e.target.value });
@@ -125,12 +125,12 @@ function Register({ addUser }) {
           setCityValid(false);
         }
       }} />
-      {cityError && <span data-testid="city-error" style={{color: 'red'}}>{cityError}</span>}
+      {cityError && <span data-testid="city-error" data-cy="city-error" style={{color: 'red'}}>{cityError}</span>}
     </div>
 
     <div>
       Code Postal
-      <input data-testid="input-cp" value={cp} onChange={(e) => {
+      <input data-testid="input-cp" data-cy="input-cp" value={cp} onChange={(e) => {
         setCp(e.target.value);
         try {
           validateCodePostal({ cp: e.target.value });
@@ -141,12 +141,12 @@ function Register({ addUser }) {
           setCpValid(false);
         }
         }} />
-      {cpError && <span data-testid="cp-error" style={{color: 'red'}}>{cpError}</span>}
+      {cpError && <span data-testid="cp-error" data-cy="cp-error" style={{color: 'red'}}>{cpError}</span>}
     </div>
 
     <div>
       Email
-      <input data-testid="input-email" value={email} onChange={(e) => {
+      <input data-testid="input-email" data-cy="input-email" value={email} onChange={(e) => {
         setEmail(e.target.value);
         try {
           validateEmail({ email: e.target.value });
@@ -157,12 +157,13 @@ function Register({ addUser }) {
           setEmailValid(false);
         }
     }} />
-      {emailError && <span data-testid="email-error" style={{color: 'red'}}>{emailError}</span>}
+      {emailError && <span data-testid="email-error" data-cy="email-error" style={{color: 'red'}}>{emailError}</span>}
     </div>
 
     <div>
       <button
         data-testid="submit"
+        data-cy="submit"
         disabled={!(ageValid && identityValid && cityValid && cpValid && emailValid)}
         onClick={handleSubmit}
       >
@@ -174,7 +175,7 @@ function Register({ addUser }) {
       <Link to="/">Retour à l'accueil</Link>
     </div>
 
-    {toast && <div data-testid="toast" style={{
+    {toast && <div data-testid="toast" data-cy="toast" style={{
       position: 'fixed', top: 20, right: 20,
       backgroundColor: 'green', color: 'white',
       padding: '15px 25px', borderRadius: '5px'
