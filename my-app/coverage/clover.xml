@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1771502420956" clover="3.2.0">
-  <project timestamp="1771502420956" name="All files">
-    <metrics statements="173" coveredstatements="173" conditionals="120" coveredconditionals="120" methods="19" coveredmethods="19" elements="312" coveredelements="312" complexity="0" loc="173" ncloc="173" packages="2" files="6" classes="6"/>
+<coverage generated="1771508572794" clover="3.2.0">
+  <project timestamp="1771508572794" name="All files">
+    <metrics statements="173" coveredstatements="173" conditionals="122" coveredconditionals="121" methods="19" coveredmethods="19" elements="314" coveredelements="313" complexity="0" loc="173" ncloc="173" packages="2" files="6" classes="6"/>
     <package name="src">
-      <metrics statements="101" coveredstatements="101" conditionals="99" coveredconditionals="99" methods="8" coveredmethods="8"/>
+      <metrics statements="101" coveredstatements="101" conditionals="101" coveredconditionals="100" methods="8" coveredmethods="8"/>
       <file name="App.js" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/App.js">
-        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
         <line num="14" count="2" type="stmt"/>
         <line num="22" count="2" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
@@ -94,25 +94,25 @@
         <line num="148" count="40" type="cond" truecount="4" falsecount="0"/>
         <line num="149" count="7" type="stmt"/>
         <line num="151" count="33" type="stmt"/>
-        <line num="156" count="38" type="cond" truecount="2" falsecount="0"/>
-        <line num="157" count="1" type="stmt"/>
-        <line num="160" count="37" type="cond" truecount="2" falsecount="0"/>
-        <line num="161" count="2" type="stmt"/>
-        <line num="164" count="35" type="cond" truecount="2" falsecount="0"/>
-        <line num="165" count="1" type="stmt"/>
-        <line num="168" count="34" type="cond" truecount="2" falsecount="0"/>
-        <line num="169" count="1" type="stmt"/>
-        <line num="172" count="33" type="cond" truecount="2" falsecount="0"/>
-        <line num="173" count="1" type="stmt"/>
-        <line num="176" count="32" type="stmt"/>
-        <line num="177" count="32" type="cond" truecount="2" falsecount="0"/>
+        <line num="165" count="38" type="cond" truecount="2" falsecount="0"/>
+        <line num="166" count="1" type="stmt"/>
+        <line num="169" count="37" type="cond" truecount="2" falsecount="0"/>
+        <line num="170" count="2" type="stmt"/>
+        <line num="173" count="35" type="cond" truecount="2" falsecount="0"/>
+        <line num="174" count="1" type="stmt"/>
+        <line num="177" count="34" type="cond" truecount="2" falsecount="0"/>
         <line num="178" count="1" type="stmt"/>
-        <line num="181" count="31" type="cond" truecount="2" falsecount="0"/>
+        <line num="181" count="33" type="cond" truecount="2" falsecount="0"/>
         <line num="182" count="1" type="stmt"/>
-        <line num="185" count="30" type="stmt"/>
-        <line num="186" count="30" type="cond" truecount="2" falsecount="0"/>
-        <line num="187" count="8" type="stmt"/>
-        <line num="189" count="22" type="stmt"/>
+        <line num="185" count="32" type="stmt"/>
+        <line num="186" count="32" type="cond" truecount="2" falsecount="0"/>
+        <line num="187" count="1" type="stmt"/>
+        <line num="190" count="31" type="cond" truecount="2" falsecount="0"/>
+        <line num="191" count="1" type="stmt"/>
+        <line num="194" count="30" type="stmt"/>
+        <line num="195" count="30" type="cond" truecount="2" falsecount="0"/>
+        <line num="196" count="8" type="stmt"/>
+        <line num="198" count="22" type="stmt"/>
       </file>
     </package>
     <package name="src.pages">

@@ -249,7 +249,8 @@
 <a name='L184'></a><a href='#L184'>184</a>
 <a name='L185'></a><a href='#L185'>185</a>
 <a name='L186'></a><a href='#L186'>186</a>
-<a name='L187'></a><a href='#L187'>187</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -406,6 +407,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">48x</span>
 <span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -506,7 +508,7 @@ function Register({ addUser }) {
 &nbsp;
     &lt;div&gt;
       Date de naissance
-      &lt;input data-testid="input-birthdate" type="date" value={birthDate} onChange={(e) =&gt; {
+      &lt;input data-testid="input-birthdate" data-cy="input-birthdate" type="date" value={birthDate} onChange={(e) =&gt; {
         setBirthDate(e.target.value);
         try {
           validateAge({ birth: new Date(e.target.value) });
@@ -517,12 +519,12 @@ function Register({ addUser }) {
           setAgeValid(false);
         }
       }} /&gt;
-      {ageError &amp;&amp; &lt;span data-testid="age-error" style={{color: 'red'}}&gt;{ageError}&lt;/span&gt;}
+      {ageError &amp;&amp; &lt;span data-testid="age-error" data-cy="age-error" style={{color: 'red'}}&gt;{ageError}&lt;/span&gt;}
     &lt;/div&gt;
 &nbsp;
     &lt;div&gt;
       Nom
-      &lt;input data-testid="input-name" value={name} onChange={(e) =&gt; {
+      &lt;input data-testid="input-name" data-cy="input-name" value={name} onChange={(e) =&gt; {
         setName(e.target.value);
         try {
           validateIdentity({ name: e.target.value, first: first });
@@ -535,7 +537,7 @@ function Register({ addUser }) {
       }} /&gt;
 &nbsp;
       Prénom
-      &lt;input data-testid="input-first" value={first} onChange={(e) =&gt; {
+      &lt;input data-testid="input-first" data-cy="input-first" value={first} onChange={(e) =&gt; {
         setfirst(e.target.value);
         try {
           validateIdentity({ name: name, first: e.target.value });
@@ -546,12 +548,12 @@ function Register({ addUser }) {
           setIdentityValid(false);
         }
       }} /&gt;
-      {identityError &amp;&amp; &lt;span data-testid="identity-error" style={{color: 'red'}}&gt;{identityError}&lt;/span&gt;}
+      {identityError &amp;&amp; &lt;span data-testid="identity-error" data-cy="identity-error" style={{color: 'red'}}&gt;{identityError}&lt;/span&gt;}
     &lt;/div&gt;
 &nbsp;
     &lt;div&gt;
       Ville
-      &lt;input data-testid="input-city" value={city} onChange={(e) =&gt; {
+      &lt;input data-testid="input-city" data-cy="input-city" value={city} onChange={(e) =&gt; {
         setCity(e.target.value);
         try {
           validateCity({ city: e.target.value });
@@ -562,12 +564,12 @@ function Register({ addUser }) {
           setCityValid(false);
         }
       }} /&gt;
-      {cityError &amp;&amp; &lt;span data-testid="city-error" style={{color: 'red'}}&gt;{cityError}&lt;/span&gt;}
+      {cityError &amp;&amp; &lt;span data-testid="city-error" data-cy="city-error" style={{color: 'red'}}&gt;{cityError}&lt;/span&gt;}
     &lt;/div&gt;
 &nbsp;
     &lt;div&gt;
       Code Postal
-      &lt;input data-testid="input-cp" value={cp} onChange={(e) =&gt; {
+      &lt;input data-testid="input-cp" data-cy="input-cp" value={cp} onChange={(e) =&gt; {
         setCp(e.target.value);
         try {
           validateCodePostal({ cp: e.target.value });
@@ -578,12 +580,12 @@ function Register({ addUser }) {
           setCpValid(false);
         }
         }} /&gt;
-      {cpError &amp;&amp; &lt;span data-testid="cp-error" style={{color: 'red'}}&gt;{cpError}&lt;/span&gt;}
+      {cpError &amp;&amp; &lt;span data-testid="cp-error" data-cy="cp-error" style={{color: 'red'}}&gt;{cpError}&lt;/span&gt;}
     &lt;/div&gt;
 &nbsp;
     &lt;div&gt;
       Email
-      &lt;input data-testid="input-email" value={email} onChange={(e) =&gt; {
+      &lt;input data-testid="input-email" data-cy="input-email" value={email} onChange={(e) =&gt; {
         setEmail(e.target.value);
         try {
           validateEmail({ email: e.target.value });
@@ -594,12 +596,13 @@ function Register({ addUser }) {
           setEmailValid(false);
         }
     }} /&gt;
-      {emailError &amp;&amp; &lt;span data-testid="email-error" style={{color: 'red'}}&gt;{emailError}&lt;/span&gt;}
+      {emailError &amp;&amp; &lt;span data-testid="email-error" data-cy="email-error" style={{color: 'red'}}&gt;{emailError}&lt;/span&gt;}
     &lt;/div&gt;
 &nbsp;
     &lt;div&gt;
       &lt;button
         data-testid="submit"
+        data-cy="submit"
         disabled={!(ageValid &amp;&amp; identityValid &amp;&amp; cityValid &amp;&amp; cpValid &amp;&amp; emailValid)}
         onClick={handleSubmit}
       &gt;
@@ -611,7 +614,7 @@ function Register({ addUser }) {
       &lt;Link to="/"&gt;Retour à l'accueil&lt;/Link&gt;
     &lt;/div&gt;
 &nbsp;
-    {toast &amp;&amp; &lt;div data-testid="toast" style={{
+    {toast &amp;&amp; &lt;div data-testid="toast" data-cy="toast" style={{
       position: 'fixed', top: 20, right: 20,
       backgroundColor: 'green', color: 'white',
       padding: '15px 25px', borderRadius: '5px'
@@ -628,7 +631,7 @@ export default Register;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-19T12:00:20.941Z
+                at 2026-02-19T13:42:52.778Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
