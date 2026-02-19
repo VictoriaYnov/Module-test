@@ -26,7 +26,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/Module-test' : ''}>
       <Routes>
         <Route path="/" element={<Home users={users} />} />
         <Route path="/register" element={<Register addUser={addUser} />} />
