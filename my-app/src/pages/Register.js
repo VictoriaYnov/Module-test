@@ -11,10 +11,10 @@ import './Register.css';
  * À la soumission, les données sont sauvegardées dans le localStorage,
  * les champs sont vidés et un toast de confirmation s'affiche pendant 3 secondes.
  *
- * @component
+ * @param {{ addUser: Function }} props - La fonction pour ajouter un utilisateur au state global
  * @returns {JSX.Element} Le formulaire d'inscription avec validation
  */
-function Register() {
+function Register({ addUser }) {
   // Age
   let [birthDate, setBirthDate] = useState('');
   const [ageError, setAgeError] = useState('');
@@ -49,14 +49,8 @@ function Register() {
    * et affiche un toast de confirmation pendant 3 secondes.
    */
   const handleSubmit = () => {
-    // Sauvegardez dans le localStorage
-
-    // Récupère la liste des utilistaeurs
-    const existing = JSON.parse(localStorage.getItem('users')) || [];
-    // Ajoute le nouvel utilisateur
-    existing.push({ birthDate, name, first, city, cp, email });
-    // Sauvegarde la liste mise à jour
-    localStorage.setItem('users', JSON.stringify(existing));
+    // Ajoute l'utilisateur via le state parent dans App.js
+    addUser({ birthDate, name, first, city, cp, email });
 
     // Videz les champs
     setBirthDate(''); setAgeError(''); setAgeValid(false);

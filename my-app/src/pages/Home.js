@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 
 /**
- * Page d'accueil de l'application.
+ * Page d'accueil
  * Présente l'application et propose un lien vers le formulaire d'inscription.
  *
- * @component
+ * @param {{ users: Array }} props - La liste des utilisateurs inscrits à afficher
  * @returns {JSX.Element} La page d'accueil
  */
-function Home() {
+function Home({ users }) {
   return (
     <div>
       <h1>Bienvenue</h1>
@@ -15,6 +15,10 @@ function Home() {
       <Link to="/register">
         <button>Accéder au formulaire</button>
       </Link>
+      <h1>Utilisateurs inscrits</h1>
+      {users.map((user, index) => (
+        <p key={index}>{user.first} {user.name}</p>
+      ))}
     </div>
   );
 }

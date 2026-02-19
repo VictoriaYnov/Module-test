@@ -5,7 +5,8 @@ import Register from '../pages/Register';
 test('utilisateur chaotique ', async () => {
   // Scénario décrit dans TEST_PLAN.md
   jest.useFakeTimers();
-  render(<Register />);
+  const mockAddUser = jest.fn();
+  render(<Register addUser={mockAddUser} />);
 
   // 1. Le bouton "Soumettre" est désactive au demarrage
   const submitBtn = screen.getByTestId('submit');
@@ -110,16 +111,16 @@ test('utilisateur chaotique ', async () => {
     expect(input).toHaveValue('');
   });
 
-  // 11. Les données sont dans le localStorage
-  const users = JSON.parse(localStorage.getItem('users'));
-  expect(users).toHaveLength(1);
-  const saved = users[0];
-  expect(saved.name).toBe('Martini');
-  expect(saved.first).toBe('Victoria');
-  expect(saved.email).toBe('victoria@example.com');
-  expect(saved.city).toBe('Capbreton');
-  expect(saved.cp).toBe('40130');
-  expect(saved.birthDate).toBe('1997-02-03');
+  // 11. addUser a bien été appelé avec les bonnes données
+  expect(mockAddUser).toHaveBeenCalledTimes(1);
+  expect(mockAddUser).toHaveBeenCalledWith({
+    name: 'Martini',
+    first: 'Victoria',
+    email: 'victoria@example.com',
+    city: 'Capbreton',
+    cp: '40130',
+    birthDate: '1997-02-03',
+  });
 
   // 11. Le bouton redevient désactivé
   expect(submitBtn).toBeDisabled();

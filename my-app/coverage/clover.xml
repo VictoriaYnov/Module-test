@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1771496337942" clover="3.2.0">
-  <project timestamp="1771496337942" name="All files">
-    <metrics statements="169" coveredstatements="167" conditionals="116" coveredconditionals="116" methods="17" coveredmethods="15" elements="302" coveredelements="298" complexity="0" loc="169" ncloc="169" packages="2" files="6" classes="6"/>
+<coverage generated="1771497491373" clover="3.2.0">
+  <project timestamp="1771497491373" name="All files">
+    <metrics statements="173" coveredstatements="165" conditionals="116" coveredconditionals="114" methods="19" coveredmethods="15" elements="308" coveredelements="294" complexity="0" loc="173" ncloc="173" packages="2" files="6" classes="6"/>
     <package name="src">
-      <metrics statements="96" coveredstatements="95" conditionals="97" coveredconditionals="97" methods="7" coveredmethods="6"/>
+      <metrics statements="101" coveredstatements="95" conditionals="99" coveredconditionals="97" methods="8" coveredmethods="6"/>
       <file name="App.js" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/App.js">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="6" count="0" type="stmt"/>
+        <metrics statements="6" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
       </file>
       <file name="module.js" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/module.js">
         <metrics statements="15" coveredstatements="15" conditionals="14" coveredconditionals="14" methods="1" coveredmethods="1"/>
@@ -111,17 +116,18 @@
       </file>
     </package>
     <package name="src.pages">
-      <metrics statements="73" coveredstatements="72" conditionals="19" coveredconditionals="19" methods="10" coveredmethods="9"/>
+      <metrics statements="72" coveredstatements="70" conditionals="17" coveredconditionals="17" methods="11" coveredmethods="9"/>
       <file name="Home.js" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/pages/Home.js">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
       </file>
       <file name="Register.css" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/pages/Register.css">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
       <file name="Register.js" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/pages/Register.js">
-        <metrics statements="71" coveredstatements="71" conditionals="19" coveredconditionals="19" methods="9" coveredmethods="9"/>
+        <metrics statements="69" coveredstatements="69" conditionals="17" coveredconditionals="17" methods="9" coveredmethods="9"/>
         <line num="19" count="110" type="stmt"/>
         <line num="20" count="110" type="stmt"/>
         <line num="21" count="110" type="stmt"/>
@@ -140,59 +146,57 @@
         <line num="42" count="110" type="stmt"/>
         <line num="44" count="110" type="stmt"/>
         <line num="51" count="110" type="stmt"/>
-        <line num="55" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
         <line num="57" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
         <line num="59" count="1" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
         <line num="63" count="1" type="stmt"/>
         <line num="64" count="1" type="stmt"/>
-        <line num="65" count="1" type="stmt"/>
-        <line num="66" count="1" type="stmt"/>
-        <line num="69" count="1" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
-        <line num="73" count="110" type="stmt"/>
-        <line num="78" count="2" type="stmt"/>
-        <line num="79" count="2" type="stmt"/>
-        <line num="80" count="2" type="stmt"/>
-        <line num="81" count="1" type="stmt"/>
-        <line num="82" count="1" type="stmt"/>
-        <line num="84" count="1" type="stmt"/>
-        <line num="85" count="1" type="stmt"/>
-        <line num="94" count="26" type="stmt"/>
-        <line num="95" count="26" type="stmt"/>
-        <line num="96" count="26" type="stmt"/>
-        <line num="97" count="7" type="stmt"/>
-        <line num="98" count="7" type="stmt"/>
-        <line num="100" count="19" type="stmt"/>
-        <line num="101" count="19" type="stmt"/>
-        <line num="107" count="18" type="stmt"/>
-        <line num="108" count="18" type="stmt"/>
-        <line num="109" count="18" type="stmt"/>
-        <line num="110" count="11" type="stmt"/>
-        <line num="111" count="11" type="stmt"/>
-        <line num="113" count="7" type="stmt"/>
-        <line num="114" count="7" type="stmt"/>
-        <line num="123" count="20" type="stmt"/>
-        <line num="124" count="20" type="stmt"/>
-        <line num="125" count="20" type="stmt"/>
-        <line num="126" count="12" type="stmt"/>
-        <line num="127" count="12" type="stmt"/>
-        <line num="129" count="8" type="stmt"/>
-        <line num="130" count="8" type="stmt"/>
-        <line num="139" count="9" type="stmt"/>
-        <line num="140" count="9" type="stmt"/>
-        <line num="141" count="9" type="stmt"/>
-        <line num="142" count="1" type="stmt"/>
-        <line num="143" count="1" type="stmt"/>
-        <line num="145" count="8" type="stmt"/>
-        <line num="146" count="8" type="stmt"/>
-        <line num="155" count="32" type="stmt"/>
-        <line num="156" count="32" type="stmt"/>
-        <line num="157" count="32" type="stmt"/>
-        <line num="158" count="2" type="stmt"/>
-        <line num="159" count="2" type="stmt"/>
-        <line num="161" count="30" type="stmt"/>
-        <line num="162" count="30" type="stmt"/>
+        <line num="67" count="110" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="88" count="26" type="stmt"/>
+        <line num="89" count="26" type="stmt"/>
+        <line num="90" count="26" type="stmt"/>
+        <line num="91" count="7" type="stmt"/>
+        <line num="92" count="7" type="stmt"/>
+        <line num="94" count="19" type="stmt"/>
+        <line num="95" count="19" type="stmt"/>
+        <line num="101" count="18" type="stmt"/>
+        <line num="102" count="18" type="stmt"/>
+        <line num="103" count="18" type="stmt"/>
+        <line num="104" count="11" type="stmt"/>
+        <line num="105" count="11" type="stmt"/>
+        <line num="107" count="7" type="stmt"/>
+        <line num="108" count="7" type="stmt"/>
+        <line num="117" count="20" type="stmt"/>
+        <line num="118" count="20" type="stmt"/>
+        <line num="119" count="20" type="stmt"/>
+        <line num="120" count="12" type="stmt"/>
+        <line num="121" count="12" type="stmt"/>
+        <line num="123" count="8" type="stmt"/>
+        <line num="124" count="8" type="stmt"/>
+        <line num="133" count="9" type="stmt"/>
+        <line num="134" count="9" type="stmt"/>
+        <line num="135" count="9" type="stmt"/>
+        <line num="136" count="1" type="stmt"/>
+        <line num="137" count="1" type="stmt"/>
+        <line num="139" count="8" type="stmt"/>
+        <line num="140" count="8" type="stmt"/>
+        <line num="149" count="32" type="stmt"/>
+        <line num="150" count="32" type="stmt"/>
+        <line num="151" count="32" type="stmt"/>
+        <line num="152" count="2" type="stmt"/>
+        <line num="153" count="2" type="stmt"/>
+        <line num="155" count="30" type="stmt"/>
+        <line num="156" count="30" type="stmt"/>
       </file>
     </package>
   </project>
