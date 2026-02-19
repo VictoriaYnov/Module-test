@@ -1,12 +1,13 @@
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import Register from '../pages/Register';
 
 test('utilisateur chaotique ', async () => {
   // Scénario décrit dans TEST_PLAN.md
   jest.useFakeTimers();
   const mockAddUser = jest.fn();
-  render(<Register addUser={mockAddUser} />);
+  render(<MemoryRouter><Register addUser={mockAddUser} /></MemoryRouter>);
 
   // 1. Le bouton "Soumettre" est désactive au demarrage
   const submitBtn = screen.getByTestId('submit');

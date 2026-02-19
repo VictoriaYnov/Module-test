@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { validateAge, validateCodePostal, validateIdentity , validateEmail, validateCity} from '../validator';
 import './Register.css';
 
@@ -167,6 +168,10 @@ function Register({ addUser }) {
       >
         Soumettre le formulaire
       </button>
+    </div>
+
+    <div>
+      <Link to="/">Retour à l'accueil</Link>
     </div>
 
     {toast && <div data-testid="toast" style={{
