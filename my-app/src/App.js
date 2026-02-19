@@ -26,7 +26,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Home users={users} />} />
         <Route path="/register" element={<Register addUser={addUser} />} />
