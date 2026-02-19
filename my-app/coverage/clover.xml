@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1771500232143" clover="3.2.0">
-  <project timestamp="1771500232144" name="All files">
-    <metrics statements="173" coveredstatements="173" conditionals="116" coveredconditionals="116" methods="19" coveredmethods="19" elements="308" coveredelements="308" complexity="0" loc="173" ncloc="173" packages="2" files="6" classes="6"/>
+<coverage generated="1771501499196" clover="3.2.0">
+  <project timestamp="1771501499196" name="All files">
+    <metrics statements="173" coveredstatements="173" conditionals="120" coveredconditionals="120" methods="19" coveredmethods="19" elements="312" coveredelements="312" complexity="0" loc="173" ncloc="173" packages="2" files="6" classes="6"/>
     <package name="src">
       <metrics statements="101" coveredstatements="101" conditionals="99" coveredconditionals="99" methods="8" coveredmethods="8"/>
       <file name="App.js" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/App.js">
@@ -116,11 +116,11 @@
       </file>
     </package>
     <package name="src.pages">
-      <metrics statements="72" coveredstatements="72" conditionals="17" coveredconditionals="17" methods="11" coveredmethods="11"/>
+      <metrics statements="72" coveredstatements="72" conditionals="21" coveredconditionals="21" methods="11" coveredmethods="11"/>
       <file name="Home.js" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/pages/Home.js">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
         <line num="11" count="6" type="stmt"/>
-        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
       </file>
       <file name="Register.css" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/pages/Register.css">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

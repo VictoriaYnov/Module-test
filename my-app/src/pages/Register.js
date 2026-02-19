@@ -69,7 +69,7 @@ function Register({ addUser }) {
 
     <div>
       Date de naissance
-      <input type="date" value={birthDate} onChange={(e) => {
+      <input data-testid="input-birthdate" type="date" value={birthDate} onChange={(e) => {
         setBirthDate(e.target.value);
         try {
           validateAge({ birth: new Date(e.target.value) });
@@ -85,7 +85,7 @@ function Register({ addUser }) {
 
     <div>
       Nom
-      <input value={name} onChange={(e) => {
+      <input data-testid="input-name" value={name} onChange={(e) => {
         setName(e.target.value);
         try {
           validateIdentity({ name: e.target.value, first: first });
@@ -98,7 +98,7 @@ function Register({ addUser }) {
       }} />
 
       Prénom
-      <input value={first} onChange={(e) => {
+      <input data-testid="input-first" value={first} onChange={(e) => {
         setfirst(e.target.value);
         try {
           validateIdentity({ name: name, first: e.target.value });
@@ -114,7 +114,7 @@ function Register({ addUser }) {
 
     <div>
       Ville
-      <input value={city} onChange={(e) => {
+      <input data-testid="input-city" value={city} onChange={(e) => {
         setCity(e.target.value);
         try {
           validateCity({ city: e.target.value });
@@ -130,7 +130,7 @@ function Register({ addUser }) {
 
     <div>
       Code Postal
-      <input value={cp} onChange={(e) => {
+      <input data-testid="input-cp" value={cp} onChange={(e) => {
         setCp(e.target.value);
         try {
           validateCodePostal({ cp: e.target.value });
@@ -146,7 +146,7 @@ function Register({ addUser }) {
 
     <div>
       Email
-      <input value={email} onChange={(e) => {
+      <input data-testid="input-email" value={email} onChange={(e) => {
         setEmail(e.target.value);
         try {
           validateEmail({ email: e.target.value });
