@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = 'https://jsonplaceholder.typicode.com';
+const API = process.env.REACT_APP_SERVER_URL || 'https://jsonplaceholder.typicode.com';
 
 /**
  * Fetches the total number of registered users from the API.

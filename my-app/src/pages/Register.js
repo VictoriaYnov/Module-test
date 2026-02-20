@@ -43,25 +43,40 @@ function Register({ addUser }) {
   const [cityValid, setCityValid] = useState(false);
 
   const [toast, setToast] = useState('');
+  const [toastType, setToastType] = useState('success');
 
   /**
    * Gère la soumission du formulaire.
-   * Sauvegarde les données dans le localStorage, vide tous les champs
-   * et affiche un toast de confirmation pendant 3 secondes.
+   * Envoie les données à l'API, vide les champs et affiche un toast.
+   * - Succès (201) : toast vert de confirmation.
+   * - Erreur métier (400) : toast rouge avec le message du back.
+   * - Crash serveur (500) : toast rouge d'alerte générique.
    */
-  const handleSubmit = () => {
-    // Ajoute l'utilisateur via le state parent dans App.js
-    addUser({ birthDate, name, first, city, cp, email });
+  const handleSubmit = async () => {
+    try {
+      await addUser({ birthDate, name, first, city, cp, email });
 
-    // Videz les champs
-    setBirthDate(''); setAgeError(''); setAgeValid(false);
-    setName(''); setFirst(''); setIdentityError(''); setIdentityValid(false);
-    setCp(''); setCpError(''); setCpValid(false);
-    setEmail(''); setEmailError(''); setEmailValid(false);
-    setCity(''); setCityError(''); setCityValid(false);
+      // Videz les champs
+      setBirthDate(''); setAgeError(''); setAgeValid(false);
+      setName(''); setFirst(''); setIdentityError(''); setIdentityValid(false);
+      setCp(''); setCpError(''); setCpValid(false);
+      setEmail(''); setEmailError(''); setEmailValid(false);
+      setCity(''); setCityError(''); setCityValid(false);
 
-    // Affichez un Toaster
-    setToast('Formulaire envoyé avec succès !');
+      // Toast de succès
+      setToastType('success');
+      setToast('Formulaire envoyé avec succès !');
+    } catch (error) {
+      // Erreur métier (400) : message spécifique du back
+      if (error.response?.status === 400) {
+        setToast(error.response.data?.message || 'Cet email est déjà utilisé.');
+      } else {
+        // Crash serveur (500) ou erreur réseau
+        setToast('Le serveur est indisponible. Veuillez réessayer plus tard.');
+      }
+      setToastType('error');
+    }
+
     setTimeout(() => setToast(''), 3000);
   };
 
@@ -177,7 +192,7 @@ function Register({ addUser }) {
 
     {toast && <div data-testid="toast" data-cy="toast" style={{
       position: 'fixed', top: 20, right: 20,
-      backgroundColor: 'green', color: 'white',
+      backgroundColor: toastType === 'success' ? 'green' : 'red', color: 'white',
       padding: '15px 25px', borderRadius: '5px'
     }}>{toast}</div>}
 

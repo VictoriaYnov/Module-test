@@ -35,12 +35,8 @@ function App() {
    * @returns {Promise<void>}
    */
   const addUser = async (user) => {
-    try {
-      await postUser(user);
-      setUsersCount((prev) => prev + 1);
-    } catch (error) {
-      setApiError('Impossible d\'enregistrer l\'utilisateur.');
-    }
+    await postUser(user);
+    setUsersCount((prev) => prev + 1);
   };
 
   return (
