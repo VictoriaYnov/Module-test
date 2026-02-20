@@ -157,5 +157,4 @@ describe('App - Tests d\'intégration avec API (Axios)', () => {
     // Compteur toujours à 10
     expect(screen.getByText('10 utilisateurs inscrits')).toBeInTheDocument();
   });
-
 });

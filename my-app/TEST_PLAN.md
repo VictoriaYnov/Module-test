@@ -81,6 +81,21 @@
 | Ville avec chiffres ou underscore | Throw "parameters are invalid" |
 | Injection XSS (`<script>`) | Throw "parameters are invalid" |
 
+### Fonctions API (api.js)
+
+| Cas | Fonction | Resultat attendu |
+| --- | -------- | ---------------- |
+| GET retourne 10 utilisateurs | `countUsers` | Retourne `10` (longueur du tableau) |
+| GET echoue (erreur reseau) | `countUsers` | Rejette avec `'Network Error'` |
+| GET retourne 10 utilisateurs | `getAllUsers` | Retourne le tableau complet |
+| GET echoue (erreur reseau) | `getAllUsers` | Rejette avec `'Network Error'` |
+| POST retourne `{ id: 101 }` | `postUser` | Retourne `{ id: 101 }` |
+| POST echoue (erreur serveur) | `postUser` | Rejette avec `'Server Error'` |
+
+Ces tests couvrent directement les fonctions Axios de `api.js` avec `jest.mock('axios')` : aucun appel reseau reel ne sort.
+
+---
+
 ### `Home` (pages/Home.js)
 
 | Cas | Resultat attendu |
@@ -101,11 +116,11 @@ Ce test simule un utilisateur reel qui fait des erreurs, corrige, refait des err
 
 **Deroulement du scenario :**
 
-1. Le bouton "Soumettre" est desactive au demarrage
+1. Le bouton "Soumettre" est désactive au demarrage
 2. **Email** : saisie invalide -> message d'erreur rouge -> correction -> erreur disparait
-3. Le bouton "Soumettre" reste desactive
+3. Le bouton "Soumettre" reste désactivé
 4. **Nom** : saisie invalide avec chiffres -> erreur -> correction
-5. **Prenom** : saisie invalide avec caractere interdit -> saisie valide -> erreur identite disparait
+5. **Prenom** : saisie invalide avec caractère interdit -> saisie valide -> erreur identite disparait
 6. **Ville** : saisie invalide -> erreur -> correction -> erreur disparait
 7. **Code Postal** : saisie trop courte -> erreur -> correction -> erreur disparait
 8. **Date de naissance** : saisie valide
@@ -117,7 +132,7 @@ Ce test simule un utilisateur reel qui fait des erreurs, corrige, refait des err
 
 - L'affichage et la disparition des messages d'erreur en temps reel
 - La couleur rouge des messages d'erreur
-- Le bouton desactive/active selon l'etat de validation
+- Le bouton désactive/active selon l'etat de validation
 - La re-invalidation apres une modification
 - `addUser` appele avec les bonnes donnees (separation logique/composant)
 - Le toaster disparait apres 3 secondes (fake timers + act)

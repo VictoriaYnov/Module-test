@@ -114,10 +114,11 @@ my-app/
 │   │   ├── home.test.js     - Tests unitaires du composant Home
 │   │   ├── register.test.js - Tests d'integration du formulaire (scenario chaotique)
 │   │   ├── app.test.js      - Tests d'integration API avec jest.mock('axios')
+│   │   ├── api.test.js      - Tests unitaires des fonctions Axios (countUsers, getAllUsers, postUser)
 │   │   ├── module.test.js   - Tests unitaires de calculateAge
 │   │   └── validator.test.js - Tests unitaires des validateurs
 │   ├── App.js               - Composant racine avec routeur et etat global
-│   ├── api.js               - Fonctions Axios (countUsers, postUser)
+│   ├── api.js               - Fonctions Axios (countUsers, getAllUsers, postUser)
 │   ├── module.js            - Fonction de calcul d'age
 │   └── validator.js         - Fonctions de validation (age, email, CP, identite, ville)
 ├── cypress/
