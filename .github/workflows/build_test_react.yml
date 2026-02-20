@@ -19,6 +19,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm ci, doc, build and test
         working-directory: ./my-app
+        env:
+          REACT_APP_SERVER_URL: ${{ secrets.REACT_APP_SERVER_URL }}
         run: |
           npm ci
           npm run jsdoc
@@ -30,6 +32,8 @@ jobs:
           working-directory: ./my-app
           build: npm run build
           start: npm start
+        env:
+          REACT_APP_SERVER_URL: ${{ secrets.REACT_APP_SERVER_URL }}
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
