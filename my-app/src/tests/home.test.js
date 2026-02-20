@@ -6,7 +6,7 @@ describe('Home - Unit Test Suites', () => {
 
   // Cas : Vérification IHM
   it('should display the page', () => {
-    render(<MemoryRouter><Home users={[]} /></MemoryRouter>);
+    render(<MemoryRouter><Home usersCount={0} apiError="" /></MemoryRouter>);
     expect(screen.getByText('Bienvenue')).toBeInTheDocument();
     expect(screen.getByText('Utilisateurs inscrits')).toBeInTheDocument();
     const link = screen.getByRole('link', { name: 'Accéder au formulaire' });
@@ -14,31 +14,30 @@ describe('Home - Unit Test Suites', () => {
     expect(link).toHaveAttribute('href', '/register');
   });
 
-  // Cas : aucun utilisateur inscrit - liste vide et compteur à 0
-  it('should display an empty list when no user', () => {
-    render(<MemoryRouter><Home users={[]} /></MemoryRouter>);
+  // Cas : compteur à 0, aucun utilisateur
+  it('should display 0 users when count is 0', () => {
+    render(<MemoryRouter><Home usersCount={0} apiError="" /></MemoryRouter>);
     expect(screen.getByText('0 utilisateur inscrit')).toBeInTheDocument();
-    expect(screen.queryByText('Victoria Martini')).not.toBeInTheDocument();
   });
 
-  // Cas : un utilisateur inscrit et compteur à 1
-  it('should display one user in the list', () => {
-    const users = [{ first: 'Victoria', name: 'Martini' }];
-    render(<MemoryRouter><Home users={users} /></MemoryRouter>);
+  // Cas : compteur à 1
+  it('should display singular form when count is 1', () => {
+    render(<MemoryRouter><Home usersCount={1} apiError="" /></MemoryRouter>);
     expect(screen.getByText('1 utilisateur inscrit')).toBeInTheDocument();
-    expect(screen.getByText('Victoria Martini')).toBeInTheDocument();
   });
 
-  // Cas : plusieurs utilisateurs inscrits et compteur cohérent
-  it('should display multiple users in the list', () => {
-    const users = [
-      { first: 'Victoria', name: 'Martini' },
-      { first: 'Alice', name: 'Bob' },
-    ];
-    render(<MemoryRouter><Home users={users} /></MemoryRouter>);
-    expect(screen.getByText('2 utilisateurs inscrits')).toBeInTheDocument();
-    expect(screen.getByText('Victoria Martini')).toBeInTheDocument();
-    expect(screen.getByText('Alice Bob')).toBeInTheDocument();
+  // Cas : compteur à plusieurs
+  it('should display plural form when count is greater than 1', () => {
+    render(<MemoryRouter><Home usersCount={10} apiError="" /></MemoryRouter>);
+    expect(screen.getByText('10 utilisateurs inscrits')).toBeInTheDocument();
+  });
+
+  // Cas : erreur API - affiche le message d'erreur
+  it('should display error message when apiError is set', () => {
+    render(<MemoryRouter><Home usersCount={0} apiError="Impossible de récupérer les utilisateurs." /></MemoryRouter>);
+    expect(screen.getByTestId('api-error')).toBeInTheDocument();
+    expect(screen.getByText('Impossible de récupérer les utilisateurs.')).toBeInTheDocument();
+    expect(screen.queryByTestId('user-count')).not.toBeInTheDocument();
   });
 
 });

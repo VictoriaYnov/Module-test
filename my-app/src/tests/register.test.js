@@ -94,8 +94,9 @@ test('utilisateur chaotique ', async () => {
   // 10. Bouton active : toutes les validations passent
   expect(submitBtn).toBeEnabled();
 
-  // 11. Soumission
+  // 11. Soumission (handleSubmit est async : on attend la résolution)
   userEvent.click(submitBtn);
+  await act(async () => { await Promise.resolve(); });
 
   // 11. Le toaster vert apparaît
   expect(screen.getByTestId('toast')).toBeInTheDocument();
