@@ -3,10 +3,10 @@ import axios from 'axios';
 const API = process.env.REACT_APP_SERVER_URL || 'https://jsonplaceholder.typicode.com';
 
 /**
- * Fetches the total number of registered users from the API.
+ * Récupère le nombre d'utilisateurs enregistrés via l'API.
  *
- * @returns {Promise<number>} The number of users
- * @throws {Error} If the request fails
+ * @returns {Promise<number>} Le nombre d'utilisateurs
+ * @throws {Error} Si la requête échoue
  */
 export const countUsers = async () => {
   try {
@@ -18,10 +18,10 @@ export const countUsers = async () => {
 };
 
 /**
- * Fetches the list of all registered users from the API.
+ * Récupère la liste complète des utilisateurs depuis l'API.
  *
- * @returns {Promise<Array>} The list of users
- * @throws {Error} If the request fails
+ * @returns {Promise<Array>} La liste des utilisateurs
+ * @throws {Error} Si la requête échoue
  */
 export const getAllUsers = async () => {
   try {
@@ -33,11 +33,11 @@ export const getAllUsers = async () => {
 };
 
 /**
- * Sends a new user to the API.
+ * Envoie une requête POST à l'API pour créer un nouvel utilisateur avec les données fournies.
  *
- * @param {Object} user - The user data to send
- * @returns {Promise<Object>} The created user returned by the API (with id)
- * @throws {Error} If the request fails
+ * @param {Object} user - L'utilisateur à créer (doit contenir au moins une propriété "name")
+ * @returns {Promise<Object>} L'utilisateur créé tel que retourné par l'API
+ * @throws {Error} Si la requête échoue
  */
 export const postUser = async (user) => {
   try {

@@ -1,11 +1,11 @@
 import { calculateAge } from "./module";
 
 /**
- * Validate a person object and check if they are 18+
+ * Validation de l'âge d'une personne et vérification qu'elle est majeure
  *
- * @param {Object} p - Person object with birth date
- * @returns {boolean} True if person is 18 or older
- * @throws {Error} If validation fails or person is under 18
+ * @param {Object} p - Objet représentant une personne, implémentant un champ birth de type Date
+ * @returns {boolean} Vrai si la personne est majeure, sinon une erreur est levée
+ * @throws {Error} Si la validation de l'âge échoue, avec un message d'erreur spécifique
  */
 export function validateAge(p) {
    const age = calculateAge(p);
@@ -16,12 +16,12 @@ export function validateAge(p) {
 }
 
 /**
- * Validate French postal code
- * Accepts metropolitan France (01-95) and DOM-TOM (971-978, 984-989, except 985)
+ * Validation d'un code postal français
+ * Accepte les codes postaux de la France métropolitaine (01-95) et des DOM-TOM (971-978, 984-989, excepté 985)
  *
- * @param {Object} p - Person object with cp field
- * @returns {boolean} True if valid
- * @throws {Error} If validation fails
+ * @param {Object} p - Objet contenant un champ cp représentant le code postal à valider
+ * @returns {boolean} Vrai si le code postal est valide, sinon une erreur est levée
+ * @throws {Error} Si la validation échoue, avec un message d'erreur spécifique indiquant la raison de l'échec
  */
 export function validateCodePostal(p) {
    // Vérifier que le paramètre p existe
@@ -73,11 +73,11 @@ export function validateCodePostal(p) {
 }
 
 /**
- * Validate email format
+ * Valide l'adresse email d'une personne
  *
- * @param {Object} p - An object representing a person, implementing an email parameter
- * @returns {boolean} True if valid
- * @throws {Error} If validation fails
+ * @param {Object} p - Un objet contenant un champ email représentant l'adresse email à valider
+ * @returns {boolean} Vrai si l'email est valide, sinon une erreur est levée
+ * @throws {Error} Si la validation échoue, avec un message d'erreur spécifique indiquant la raison de l'échec
  */
 export function validateEmail(p) {
     // Vérifier que le paramètre p existe
@@ -105,13 +105,13 @@ export function validateEmail(p) {
 }
 
 /**
- * Validate a person's identity
- * Accepts letters (with accents), hyphens
- * Rejects numbers and special characters
+ * Valide l'identité d'une personne
+ * Accepte les lettres (avec accents), les tirets
+ * Rejette les chiffres et les caractères spéciaux
  *
- * @param {Object} p - Person object with name and first fields
- * @returns {boolean} True if valid
- * @throws {Error} If validation fails
+ * @param {Object} p - Personne à valider, doit contenir les champs name et first
+ * @returns {boolean} Vrai si l'identité est valide, sinon une erreur est levée
+ * @throws {Error} Si la validation échoue, avec un message d'erreur spécifique indiquant la raison de l'échec
  */
 export function validateIdentity(p) {
    // Vérifier que le paramètre p existe
@@ -152,13 +152,13 @@ export function validateIdentity(p) {
 }
 
 /**
- * Validate a city name
- * Accepts letters (with accents) and hyphens
- * Rejects numbers, special characters and XSS injections
+ * Valide un nom de ville
+ * Accepte les lettres (avec accents) et les tirets
+ * Rejette les chiffres, les caractères spéciaux et les tentatives d'injection XSS
  *
- * @param {Object} p - Object with city field
- * @returns {boolean} True if valid
- * @throws {Error} If validation fails
+ * @param {Object} p - Objet contenant un champ city représentant le nom de la ville à valider
+ * @returns {boolean} Vrai si le nom de ville est valide, sinon une erreur est levée
+ * @throws {Error} Si la validation échoue, avec un message d'erreur spécifique indiquant la raison de l'échec
  */
 export function validateCity(p) {
    // Vérifier que le paramètre p existe

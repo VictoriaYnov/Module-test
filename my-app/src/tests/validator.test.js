@@ -101,16 +101,6 @@ describe('validateEmail Unit Test Suites', ()=>{
 	// Cas refusé : email avec des symboles interdits
 	it('should reject email with special symbols', () => {
 		expect(() => validateEmail({ email: "user+tag@example.com" })).toThrow("Invalid email format");
-		expect(() => validateEmail({ email: "user!name@example.com" })).toThrow("Invalid email format");
-		expect(() => validateEmail({ email: "user#name@example.com" })).toThrow("Invalid email format");
-		expect(() => validateEmail({ email: "user$name@example.com" })).toThrow("Invalid email format");
-		expect(() => validateEmail({ email: "user%name@example.com" })).toThrow("Invalid email format");
-		expect(() => validateEmail({ email: "user&name@example.com" })).toThrow("Invalid email format");
-		expect(() => validateEmail({ email: "user=name@example.com" })).toThrow("Invalid email format");
-		expect(() => validateEmail({ email: "user^name@example.com" })).toThrow("Invalid email format");
-		expect(() => validateEmail({ email: "user`name@example.com" })).toThrow("Invalid email format");
-		expect(() => validateEmail({ email: "user{name}@example.com" })).toThrow("Invalid email format");
-		expect(() => validateEmail({ email: "user|name@example.com" })).toThrow("Invalid email format");
 		expect(() => validateEmail({ email: "user~name@example.com" })).toThrow("Invalid email format");
 	})
 

@@ -92,8 +92,6 @@
 | POST retourne `{ id: 101 }` | `postUser` | Retourne `{ id: 101 }` |
 | POST echoue (erreur serveur) | `postUser` | Rejette avec `'Server Error'` |
 
-Ces tests couvrent directement les fonctions Axios de `api.js` avec `jest.mock('axios')` : aucun appel reseau reel ne sort.
-
 ---
 
 ### `Home` (pages/Home.js)

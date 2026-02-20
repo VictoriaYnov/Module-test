@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
  * Présente l'application et propose un lien vers le formulaire d'inscription.
  * Affiche le nombre d'utilisateurs inscrits récupéré depuis l'API.
  *
- * @param {{ usersCount: number, apiError: string }} props
+ * @param {Object} props
+ * @param {number} props.usersCount - Le nombre d'utilisateurs inscrits
+ * @param {string} [props.apiError] - Message d'erreur à afficher si le chargement a échoué
  * @returns {JSX.Element} La page d'accueil
  */
 function Home({ usersCount, apiError }) {
