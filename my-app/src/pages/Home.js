@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 /**
  * Page d'accueil
  * Présente l'application et propose un lien vers le formulaire d'inscription.
+ * Affiche le nombre d'utilisateurs inscrits récupéré depuis l'API.
  *
- * @param {{ users: Array }} props - La liste des utilisateurs inscrits à afficher
+ * @param {{ usersCount: number, apiError: string }} props
  * @returns {JSX.Element} La page d'accueil
  */
-function Home({ users }) {
+function Home({ usersCount, apiError }) {
   return (
     <div>
       <h1>Bienvenue</h1>
@@ -16,10 +17,10 @@ function Home({ users }) {
         <button>Accéder au formulaire</button>
       </Link>
       <h1>Utilisateurs inscrits</h1>
-      <p data-testid="user-count">{users.length} utilisateur{users.length > 1 ? 's' : ''} inscrit{users.length > 1 ? 's' : ''}</p>
-      {users.map((user, index) => (
-        <p key={index}>{user.first} {user.name}</p>
-      ))}
+      {apiError
+        ? <p data-testid="api-error" style={{ color: 'red' }}>{apiError}</p>
+        : <p data-testid="user-count">{usersCount} utilisateur{usersCount > 1 ? 's' : ''} inscrit{usersCount > 1 ? 's' : ''}</p>
+      }
     </div>
   );
 }
