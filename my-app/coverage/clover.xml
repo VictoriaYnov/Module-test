@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1772192923595" clover="3.2.0">
-  <project timestamp="1772192923595" name="All files">
-    <metrics statements="202" coveredstatements="202" conditionals="128" coveredconditionals="126" methods="24" coveredmethods="24" elements="354" coveredelements="352" complexity="0" loc="202" ncloc="202" packages="2" files="7" classes="7"/>
+<coverage generated="1772193247063" clover="3.2.0">
+  <project timestamp="1772193247063" name="All files">
+    <metrics statements="203" coveredstatements="203" conditionals="128" coveredconditionals="126" methods="24" coveredmethods="24" elements="355" coveredelements="353" complexity="0" loc="203" ncloc="203" packages="2" files="8" classes="8"/>
     <package name="src">
       <metrics statements="124" coveredstatements="124" conditionals="101" coveredconditionals="100" methods="14" coveredmethods="14"/>
       <file name="App.js" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/App.js">
@@ -142,10 +142,14 @@
       </file>
     </package>
     <package name="src.pages">
-      <metrics statements="78" coveredstatements="78" conditionals="27" coveredconditionals="26" methods="10" coveredmethods="10"/>
+      <metrics statements="79" coveredstatements="79" conditionals="27" coveredconditionals="26" methods="10" coveredmethods="10"/>
+      <file name="Home.css" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/pages/Home.css">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
       <file name="Home.js" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/pages/Home.js">
         <metrics statements="1" coveredstatements="1" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
-        <line num="14" count="18" type="stmt"/>
+        <line num="15" count="18" type="stmt"/>
       </file>
       <file name="Register.css" path="/Users/victoria/Documents/Ynov/Tests/module-test/my-app/src/pages/Register.css">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

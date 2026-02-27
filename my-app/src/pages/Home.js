@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './Home.css';
 
 /**
  * Page d'accueil
@@ -12,16 +13,15 @@ import { Link } from 'react-router-dom';
  */
 function Home({ usersCount, apiError }) {
   return (
-    <div>
+    <div className="home-container">
       <h1>Bienvenue</h1>
       <p>Cliquez sur le bouton ci-dessous pour accéder au formulaire d'inscription.</p>
-      <Link to="/register">
-        <button>Accéder au formulaire</button>
-      </Link>
+      <Link to="/register" className="home-register-btn">Accéder au formulaire</Link>
+      <hr className="home-divider" />
       <h1>Utilisateurs inscrits</h1>
       {apiError
-        ? <p data-testid="api-error" style={{ color: 'red' }}>{apiError}</p>
-        : <p data-testid="user-count">{usersCount} utilisateur{usersCount > 1 ? 's' : ''} inscrit{usersCount > 1 ? 's' : ''}</p>
+        ? <p data-testid="api-error" className="api-error">{apiError}</p>
+        : <p data-testid="user-count" className="user-count">{usersCount} utilisateur{usersCount > 1 ? 's' : ''} inscrit{usersCount > 1 ? 's' : ''}</p>
       }
     </div>
   );
