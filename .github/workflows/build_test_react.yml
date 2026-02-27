@@ -47,7 +47,7 @@ jobs:
           directory: my-app/coverage
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-  publish-npm:
+  publish_npm:
     needs: build_test
     runs-on: ubuntu-latest
     steps:
@@ -74,7 +74,7 @@ jobs:
             echo "Version $LOCAL_VERSION déjà publiée ou non supérieure, skip."
           fi
   deploy:
-    needs: publish-npm
+    needs: publish_npm
     permissions:
       pages: write
       id-token: write
