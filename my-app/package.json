@@ -22,7 +22,7 @@
     "jsdoc": "jsdoc -R ./README.md -c ./jsdoc.config.json -r -d ./public/docs",
     "cypress": "cypress open",
     "eject": "react-scripts eject",
-    "build-npm-ci": "rm -rf dist && mkdir dist && NODE_ENV=production npx babel src --out-dir dist --copy-files"
+    "build-npm-ci": "rm -rf dist && mkdir dist && NODE_ENV=production babel src --out-dir dist --copy-files"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
     "cypress": "^15.10.0",
     "jsdoc": "^4.0.5"
   },
