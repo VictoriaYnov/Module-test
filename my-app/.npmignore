@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build output
+build/
+
+# Tests
+coverage/
+cypress/
+cypress.config.js
+src/tests/
+src/setupTests.js
+
+# Documentation
+docs/
+jsdoc.config.json
+TEST_PLAN.md
+
+# Public assets
+public/
+
+# Misc
+.DS_Store
+.env*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json

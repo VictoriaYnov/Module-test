@@ -47,8 +47,34 @@ jobs:
           directory: my-app/coverage
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-  deploy:
+  publish-npm:
     needs: build_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: 21.x
+          registry-url: 'https://registry.npmjs.org'
+      - name: Check version and publish
+        working-directory: ./my-app
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          LOCAL_VERSION=$(node -p "require('./package.json').version")
+          NPM_VERSION=$(npm show victoria-ynov version 2>/dev/null || echo "0.0.0")
+          echo "Version locale : $LOCAL_VERSION — Version NPM : $NPM_VERSION"
+          if [ "$(npx semver -r ">$NPM_VERSION" "$LOCAL_VERSION")" ]; then
+            npm ci
+            npm run build-npm-ci
+            npm publish
+          else
+            echo "Version $LOCAL_VERSION déjà publiée ou non supérieure, skip."
+          fi
+  deploy:
+    needs: publish-npm
     permissions:
       pages: write
       id-token: write
