@@ -1,6 +1,16 @@
 # Module Test - Formulaire d'inscription React
 
+[![npm version](https://img.shields.io/npm/v/victoria-ynov)](https://www.npmjs.com/package/victoria-ynov)
+
 Application React de formulaire d'inscription avec validation en temps reel des champs (date de naissance, nom, prenom, ville, code postal, email). Les donnees sont envoyees a une API REST via Axios et le compteur d'utilisateurs est recupere au chargement depuis JSONPlaceholder.
+
+## Package NPM
+
+Ce projet est publié sur npm : [https://www.npmjs.com/package/victoria-ynov](https://www.npmjs.com/package/victoria-ynov)
+
+```bash
+npm install victoria-ynov
+```
 
 ## Pre-requis
 
