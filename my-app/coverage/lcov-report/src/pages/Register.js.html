@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.65% </span>
+                <span class="strong">95.23% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>22/23</span>
+                <span class='fraction'>20/21</span>
             </div>
         
             
@@ -352,6 +352,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -360,6 +362,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -381,6 +384,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-yes">42x</span>
@@ -389,6 +393,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -412,7 +418,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
@@ -429,6 +434,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">92x</span>
 <span class="cline-any cline-yes">92x</span>
 <span class="cline-any cline-yes">92x</span>
@@ -437,12 +443,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">84x</span>
 <span class="cline-any cline-yes">84x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -549,103 +549,109 @@ function Register({ addUser }) {
     setTimeout(() =&gt; setToast(''), 3000);
   };
 &nbsp;
-  return (&lt;&gt;
+  return (
+    &lt;div className="register-container"&gt;
+      &lt;h2&gt;Inscription&lt;/h2&gt;
 &nbsp;
-    &lt;div&gt;
-      Date de naissance
-      &lt;input data-testid="input-birthdate" data-cy="input-birthdate" type="date" value={birthDate} onChange={(e) =&gt; {
-        setBirthDate(e.target.value);
-        try {
-          validateAge({ birth: new Date(e.target.value) });
-          setAgeError('');
-          setAgeValid(true);
-        } catch (err) {
-          setAgeError(err.message);
-          setAgeValid(false);
-        }
-      }} /&gt;
-      {ageError &amp;&amp; &lt;span data-testid="age-error" data-cy="age-error" style={{color: 'red'}}&gt;{ageError}&lt;/span&gt;}
-    &lt;/div&gt;
-&nbsp;
-    &lt;div&gt;
-      Nom
-      &lt;input data-testid="input-name" data-cy="input-name" value={name} onChange={(e) =&gt; {
-        setName(e.target.value);
-        try {
-          validateIdentity({ name: e.target.value, first: first });
-          setIdentityError('');
-          setIdentityValid(true);
-        } catch (err) {
-          setIdentityError(err.message);
-          setIdentityValid(false);
-        }
-      }} /&gt;
-&nbsp;
-      Prénom
-      &lt;input data-testid="input-first" data-cy="input-first" value={first} onChange={(e) =&gt; {
-        setFirst(e.target.value);
-        try {
-          validateIdentity({ name: name, first: e.target.value });
-          setIdentityError('');
-          setIdentityValid(true);
-        } catch (err) {
-          setIdentityError(err.message);
-          setIdentityValid(false);
-        }
-      }} /&gt;
-      {identityError &amp;&amp; &lt;span data-testid="identity-error" data-cy="identity-error" style={{color: 'red'}}&gt;{identityError}&lt;/span&gt;}
-    &lt;/div&gt;
-&nbsp;
-    &lt;div&gt;
-      Ville
-      &lt;input data-testid="input-city" data-cy="input-city" value={city} onChange={(e) =&gt; {
-        setCity(e.target.value);
-        try {
-          validateCity({ city: e.target.value });
-          setCityError('');
-          setCityValid(true);
-        } catch (err) {
-          setCityError(err.message);
-          setCityValid(false);
-        }
-      }} /&gt;
-      {cityError &amp;&amp; &lt;span data-testid="city-error" data-cy="city-error" style={{color: 'red'}}&gt;{cityError}&lt;/span&gt;}
-    &lt;/div&gt;
-&nbsp;
-    &lt;div&gt;
-      Code Postal
-      &lt;input data-testid="input-cp" data-cy="input-cp" value={cp} onChange={(e) =&gt; {
-        setCp(e.target.value);
-        try {
-          validateCodePostal({ cp: e.target.value });
-          setCpError('');
-          setCpValid(true);
-        } catch (err) {
-          setCpError(err.message);
-          setCpValid(false);
-        }
+      &lt;div className="form-group"&gt;
+        &lt;label&gt;Date de naissance&lt;/label&gt;
+        &lt;input data-testid="input-birthdate" data-cy="input-birthdate" type="date" value={birthDate} onChange={(e) =&gt; {
+          setBirthDate(e.target.value);
+          try {
+            validateAge({ birth: new Date(e.target.value) });
+            setAgeError('');
+            setAgeValid(true);
+          } catch (err) {
+            setAgeError(err.message);
+            setAgeValid(false);
+          }
         }} /&gt;
-      {cpError &amp;&amp; &lt;span data-testid="cp-error" data-cy="cp-error" style={{color: 'red'}}&gt;{cpError}&lt;/span&gt;}
-    &lt;/div&gt;
+        {ageError &amp;&amp; &lt;span data-testid="age-error" data-cy="age-error" className="field-error"&gt;{ageError}&lt;/span&gt;}
+      &lt;/div&gt;
 &nbsp;
-    &lt;div&gt;
-      Email
-      &lt;input data-testid="input-email" data-cy="input-email" value={email} onChange={(e) =&gt; {
-        setEmail(e.target.value);
-        try {
-          validateEmail({ email: e.target.value });
-          setEmailError('');
-          setEmailValid(true);
-        } catch (err) {
-          setEmailError(err.message);
-          setEmailValid(false);
-        }
-    }} /&gt;
-      {emailError &amp;&amp; &lt;span data-testid="email-error" data-cy="email-error" style={{color: 'red'}}&gt;{emailError}&lt;/span&gt;}
-    &lt;/div&gt;
+      &lt;div className="form-row"&gt;
+        &lt;div className="form-group"&gt;
+          &lt;label&gt;Nom&lt;/label&gt;
+          &lt;input data-testid="input-name" data-cy="input-name" value={name} onChange={(e) =&gt; {
+            setName(e.target.value);
+            try {
+              validateIdentity({ name: e.target.value, first: first });
+              setIdentityError('');
+              setIdentityValid(true);
+            } catch (err) {
+              setIdentityError(err.message);
+              setIdentityValid(false);
+            }
+          }} /&gt;
+        &lt;/div&gt;
+        &lt;div className="form-group"&gt;
+          &lt;label&gt;Prénom&lt;/label&gt;
+          &lt;input data-testid="input-first" data-cy="input-first" value={first} onChange={(e) =&gt; {
+            setFirst(e.target.value);
+            try {
+              validateIdentity({ name: name, first: e.target.value });
+              setIdentityError('');
+              setIdentityValid(true);
+            } catch (err) {
+              setIdentityError(err.message);
+              setIdentityValid(false);
+            }
+          }} /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      {identityError &amp;&amp; &lt;span data-testid="identity-error" data-cy="identity-error" className="field-error"&gt;{identityError}&lt;/span&gt;}
 &nbsp;
-    &lt;div&gt;
+      &lt;div className="form-row"&gt;
+        &lt;div className="form-group"&gt;
+          &lt;label&gt;Ville&lt;/label&gt;
+          &lt;input data-testid="input-city" data-cy="input-city" value={city} onChange={(e) =&gt; {
+            setCity(e.target.value);
+            try {
+              validateCity({ city: e.target.value });
+              setCityError('');
+              setCityValid(true);
+            } catch (err) {
+              setCityError(err.message);
+              setCityValid(false);
+            }
+          }} /&gt;
+          {cityError &amp;&amp; &lt;span data-testid="city-error" data-cy="city-error" className="field-error"&gt;{cityError}&lt;/span&gt;}
+        &lt;/div&gt;
+        &lt;div className="form-group"&gt;
+          &lt;label&gt;Code Postal&lt;/label&gt;
+          &lt;input data-testid="input-cp" data-cy="input-cp" value={cp} onChange={(e) =&gt; {
+            setCp(e.target.value);
+            try {
+              validateCodePostal({ cp: e.target.value });
+              setCpError('');
+              setCpValid(true);
+            } catch (err) {
+              setCpError(err.message);
+              setCpValid(false);
+            }
+          }} /&gt;
+          {cpError &amp;&amp; &lt;span data-testid="cp-error" data-cy="cp-error" className="field-error"&gt;{cpError}&lt;/span&gt;}
+        &lt;/div&gt;
+      &lt;/div&gt;
+&nbsp;
+      &lt;div className="form-group"&gt;
+        &lt;label&gt;Email&lt;/label&gt;
+        &lt;input data-testid="input-email" data-cy="input-email" value={email} onChange={(e) =&gt; {
+          setEmail(e.target.value);
+          try {
+            validateEmail({ email: e.target.value });
+            setEmailError('');
+            setEmailValid(true);
+          } catch (err) {
+            setEmailError(err.message);
+            setEmailValid(false);
+          }
+        }} /&gt;
+        {emailError &amp;&amp; &lt;span data-testid="email-error" data-cy="email-error" className="field-error"&gt;{emailError}&lt;/span&gt;}
+      &lt;/div&gt;
+&nbsp;
       &lt;button
+        className="submit-btn"
         data-testid="submit"
         data-cy="submit"
         disabled={!(ageValid &amp;&amp; identityValid &amp;&amp; cityValid &amp;&amp; cpValid &amp;&amp; emailValid)}
@@ -653,19 +659,13 @@ function Register({ addUser }) {
       &gt;
         Soumettre le formulaire
       &lt;/button&gt;
+&nbsp;
+      &lt;Link to="/" className="back-link"&gt;Retour à l'accueil&lt;/Link&gt;
+&nbsp;
+      {toast &amp;&amp; &lt;div data-testid="toast" data-cy="toast" className={`toast ${toastType}`}&gt;{toast}&lt;/div&gt;}
+&nbsp;
     &lt;/div&gt;
-&nbsp;
-    &lt;div&gt;
-      &lt;Link to="/"&gt;Retour à l'accueil&lt;/Link&gt;
-    &lt;/div&gt;
-&nbsp;
-    {toast &amp;&amp; &lt;div data-testid="toast" data-cy="toast" style={{
-      position: 'fixed', top: 20, right: 20,
-      backgroundColor: toastType === 'success' ? 'green' : 'red', color: 'white',
-      padding: '15px 25px', borderRadius: '5px'
-    }}&gt;{toast}&lt;/div&gt;}
-&nbsp;
-  &lt;/&gt;)
+  )
 }
 &nbsp;
 export default Register;
@@ -676,7 +676,7 @@ export default Register;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-27T11:30:52.023Z
+                at 2026-02-27T11:48:43.576Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

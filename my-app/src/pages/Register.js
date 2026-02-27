@@ -80,103 +80,109 @@ function Register({ addUser }) {
     setTimeout(() => setToast(''), 3000);
   };
 
-  return (<>
+  return (
+    <div className="register-container">
+      <h2>Inscription</h2>
 
-    <div>
-      Date de naissance
-      <input data-testid="input-birthdate" data-cy="input-birthdate" type="date" value={birthDate} onChange={(e) => {
-        setBirthDate(e.target.value);
-        try {
-          validateAge({ birth: new Date(e.target.value) });
-          setAgeError('');
-          setAgeValid(true);
-        } catch (err) {
-          setAgeError(err.message);
-          setAgeValid(false);
-        }
-      }} />
-      {ageError && <span data-testid="age-error" data-cy="age-error" style={{color: 'red'}}>{ageError}</span>}
-    </div>
-
-    <div>
-      Nom
-      <input data-testid="input-name" data-cy="input-name" value={name} onChange={(e) => {
-        setName(e.target.value);
-        try {
-          validateIdentity({ name: e.target.value, first: first });
-          setIdentityError('');
-          setIdentityValid(true);
-        } catch (err) {
-          setIdentityError(err.message);
-          setIdentityValid(false);
-        }
-      }} />
-
-      Prénom
-      <input data-testid="input-first" data-cy="input-first" value={first} onChange={(e) => {
-        setFirst(e.target.value);
-        try {
-          validateIdentity({ name: name, first: e.target.value });
-          setIdentityError('');
-          setIdentityValid(true);
-        } catch (err) {
-          setIdentityError(err.message);
-          setIdentityValid(false);
-        }
-      }} />
-      {identityError && <span data-testid="identity-error" data-cy="identity-error" style={{color: 'red'}}>{identityError}</span>}
-    </div>
-
-    <div>
-      Ville
-      <input data-testid="input-city" data-cy="input-city" value={city} onChange={(e) => {
-        setCity(e.target.value);
-        try {
-          validateCity({ city: e.target.value });
-          setCityError('');
-          setCityValid(true);
-        } catch (err) {
-          setCityError(err.message);
-          setCityValid(false);
-        }
-      }} />
-      {cityError && <span data-testid="city-error" data-cy="city-error" style={{color: 'red'}}>{cityError}</span>}
-    </div>
-
-    <div>
-      Code Postal
-      <input data-testid="input-cp" data-cy="input-cp" value={cp} onChange={(e) => {
-        setCp(e.target.value);
-        try {
-          validateCodePostal({ cp: e.target.value });
-          setCpError('');
-          setCpValid(true);
-        } catch (err) {
-          setCpError(err.message);
-          setCpValid(false);
-        }
+      <div className="form-group">
+        <label>Date de naissance</label>
+        <input data-testid="input-birthdate" data-cy="input-birthdate" type="date" value={birthDate} onChange={(e) => {
+          setBirthDate(e.target.value);
+          try {
+            validateAge({ birth: new Date(e.target.value) });
+            setAgeError('');
+            setAgeValid(true);
+          } catch (err) {
+            setAgeError(err.message);
+            setAgeValid(false);
+          }
         }} />
-      {cpError && <span data-testid="cp-error" data-cy="cp-error" style={{color: 'red'}}>{cpError}</span>}
-    </div>
+        {ageError && <span data-testid="age-error" data-cy="age-error" className="field-error">{ageError}</span>}
+      </div>
 
-    <div>
-      Email
-      <input data-testid="input-email" data-cy="input-email" value={email} onChange={(e) => {
-        setEmail(e.target.value);
-        try {
-          validateEmail({ email: e.target.value });
-          setEmailError('');
-          setEmailValid(true);
-        } catch (err) {
-          setEmailError(err.message);
-          setEmailValid(false);
-        }
-    }} />
-      {emailError && <span data-testid="email-error" data-cy="email-error" style={{color: 'red'}}>{emailError}</span>}
-    </div>
+      <div className="form-row">
+        <div className="form-group">
+          <label>Nom</label>
+          <input data-testid="input-name" data-cy="input-name" value={name} onChange={(e) => {
+            setName(e.target.value);
+            try {
+              validateIdentity({ name: e.target.value, first: first });
+              setIdentityError('');
+              setIdentityValid(true);
+            } catch (err) {
+              setIdentityError(err.message);
+              setIdentityValid(false);
+            }
+          }} />
+        </div>
+        <div className="form-group">
+          <label>Prénom</label>
+          <input data-testid="input-first" data-cy="input-first" value={first} onChange={(e) => {
+            setFirst(e.target.value);
+            try {
+              validateIdentity({ name: name, first: e.target.value });
+              setIdentityError('');
+              setIdentityValid(true);
+            } catch (err) {
+              setIdentityError(err.message);
+              setIdentityValid(false);
+            }
+          }} />
+        </div>
+      </div>
+      {identityError && <span data-testid="identity-error" data-cy="identity-error" className="field-error">{identityError}</span>}
 
-    <div>
+      <div className="form-row">
+        <div className="form-group">
+          <label>Ville</label>
+          <input data-testid="input-city" data-cy="input-city" value={city} onChange={(e) => {
+            setCity(e.target.value);
+            try {
+              validateCity({ city: e.target.value });
+              setCityError('');
+              setCityValid(true);
+            } catch (err) {
+              setCityError(err.message);
+              setCityValid(false);
+            }
+          }} />
+          {cityError && <span data-testid="city-error" data-cy="city-error" className="field-error">{cityError}</span>}
+        </div>
+        <div className="form-group">
+          <label>Code Postal</label>
+          <input data-testid="input-cp" data-cy="input-cp" value={cp} onChange={(e) => {
+            setCp(e.target.value);
+            try {
+              validateCodePostal({ cp: e.target.value });
+              setCpError('');
+              setCpValid(true);
+            } catch (err) {
+              setCpError(err.message);
+              setCpValid(false);
+            }
+          }} />
+          {cpError && <span data-testid="cp-error" data-cy="cp-error" className="field-error">{cpError}</span>}
+        </div>
+      </div>
+
+      <div className="form-group">
+        <label>Email</label>
+        <input data-testid="input-email" data-cy="input-email" value={email} onChange={(e) => {
+          setEmail(e.target.value);
+          try {
+            validateEmail({ email: e.target.value });
+            setEmailError('');
+            setEmailValid(true);
+          } catch (err) {
+            setEmailError(err.message);
+            setEmailValid(false);
+          }
+        }} />
+        {emailError && <span data-testid="email-error" data-cy="email-error" className="field-error">{emailError}</span>}
+      </div>
+
       <button
+        className="submit-btn"
         data-testid="submit"
         data-cy="submit"
         disabled={!(ageValid && identityValid && cityValid && cpValid && emailValid)}
@@ -184,19 +190,13 @@ function Register({ addUser }) {
       >
         Soumettre le formulaire
       </button>
+
+      <Link to="/" className="back-link">Retour à l'accueil</Link>
+
+      {toast && <div data-testid="toast" data-cy="toast" className={`toast ${toastType}`}>{toast}</div>}
+
     </div>
-
-    <div>
-      <Link to="/">Retour à l'accueil</Link>
-    </div>
-
-    {toast && <div data-testid="toast" data-cy="toast" style={{
-      position: 'fixed', top: 20, right: 20,
-      backgroundColor: toastType === 'success' ? 'green' : 'red', color: 'white',
-      padding: '15px 25px', borderRadius: '5px'
-    }}>{toast}</div>}
-
-  </>)
+  )
 }
 
 export default Register;

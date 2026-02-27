@@ -19,7 +19,7 @@ test('utilisateur chaotique ', async () => {
   // 2. Email : saisie invalide
   userEvent.type(inputs[4], 'mauvaismail');
   expect(screen.getByTestId('email-error')).toBeInTheDocument();
-  expect(screen.getByTestId('email-error')).toHaveStyle('color: red');
+  expect(screen.getByTestId('email-error')).toHaveClass('field-error');
 
   // 2. Correction de l'email
   userEvent.clear(inputs[4]);
@@ -32,7 +32,7 @@ test('utilisateur chaotique ', async () => {
   // 4. Nom : saisie invalide
   userEvent.type(inputs[0], 'Martini1');
   expect(screen.getByTestId('identity-error')).toBeInTheDocument();
-  expect(screen.getByTestId('identity-error')).toHaveStyle('color: red');
+  expect(screen.getByTestId('identity-error')).toHaveClass('field-error');
 
   // 4. Correction du nom
   userEvent.clear(inputs[0]);
@@ -41,7 +41,7 @@ test('utilisateur chaotique ', async () => {
   // 5. Prénom : saisie invalide
   userEvent.type(inputs[1], 'Vic$toria');
   expect(screen.getByTestId('identity-error')).toBeInTheDocument();
-  expect(screen.getByTestId('identity-error')).toHaveStyle('color: red');
+  expect(screen.getByTestId('identity-error')).toHaveClass('field-error');
 
   // 5. Prenom : saisie valide
   userEvent.clear(inputs[1]);
@@ -51,7 +51,7 @@ test('utilisateur chaotique ', async () => {
   // 6. Ville : saisie invalide
   userEvent.type(inputs[2], 'Cap_breton');
   expect(screen.getByTestId('city-error')).toBeInTheDocument();
-  expect(screen.getByTestId('city-error')).toHaveStyle('color: red');
+  expect(screen.getByTestId('city-error')).toHaveClass('field-error');
 
   // 6. Correction de la ville
   userEvent.clear(inputs[2]);
@@ -61,7 +61,7 @@ test('utilisateur chaotique ', async () => {
   // 7. Code Postal : saisie trop courte
   userEvent.type(inputs[3], '401');
   expect(screen.getByTestId('cp-error')).toBeInTheDocument();
-  expect(screen.getByTestId('cp-error')).toHaveStyle('color: red');
+  expect(screen.getByTestId('cp-error')).toHaveClass('field-error');
 
   // 7. Correction du code postal
   userEvent.clear(inputs[3]);
@@ -100,7 +100,7 @@ test('utilisateur chaotique ', async () => {
 
   // 11. Le toaster vert apparaît
   expect(screen.getByTestId('toast')).toBeInTheDocument();
-  expect(screen.getByTestId('toast')).toHaveStyle('background-color: green');
+  expect(screen.getByTestId('toast')).toHaveClass('success');
 
   // 11. Le toaster disparaît après 3 secondes
   act(() => {
