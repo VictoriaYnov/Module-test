@@ -112,7 +112,7 @@ jobs:
               echo "MySQL is ready"
               break
             fi
-            echo "Waiting for MySQL... ($i/30)"
+            echo "Waiting ($i/30)"
             sleep 2
           done
           for i in $(seq 1 30); do
@@ -120,7 +120,7 @@ jobs:
               echo "Database ynov_ci is ready"
               break
             fi
-            echo "Waiting for migrations... ($i/30)"
+            echo "Waiting ($i/30)"
             sleep 2
           done
       - name: Start API container
@@ -140,7 +140,7 @@ jobs:
               echo "API is ready"
               break
             fi
-            echo "Waiting for API... ($i/30)"
+            echo "Waiting ($i/30)"
             sleep 2
           done
       - name: Test GET /users

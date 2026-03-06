@@ -112,27 +112,87 @@ cy.intercept('POST', 'https://jsonplaceholder.typicode.com/users', {
 - **Erreur metier (400)** : le message specifique du back s'affiche dans un toast rouge, compteur inchange.
 - **Crash serveur (500)** : toast d'alerte generique, l'application ne plante pas, compteur inchange.
 
+## Pipeline CI/CD
+
+Le pipeline GitHub Actions (`build_test_react.yml`) enchaîne quatre jobs :
+
+```text
+build_test → publish_npm ──┐
+           → integration_test ──┤→ deploy
+```
+
+`publish_npm` et `integration_test` s'exécutent en parallèle après `build_test`.
+Le `deploy` attend que les deux réussissent.
+
+### Logique de publication (publish_npm)
+
+Le job compare la version locale (`package.json`) avec la version publiée sur npm avant de publier :
+
+- **Version locale > version NPM** → build + publication automatique
+- **Version identique ou inférieure** → skip sans faire échouer le pipeline
+- **Première publication (E404)** → fallback à `0.0.0`, publication déclenchée normalement
+- **Toute autre erreur** (réseau, 500, auth...) → le job échoue immédiatement (principe *Fail Fast*)
+
+Pour déclencher une publication, incrémenter la version dans `package.json` selon [SemVer](https://semver.org/) avant de pousser :
+
+| Type | Quand | Exemple |
+| --- | --- | --- |
+| `PATCH` | Correction de bug | `1.1.1` → `1.1.2` |
+| `MINOR` | Nouvelle fonctionnalité rétro-compatible | `1.1.1` → `1.2.0` |
+| `MAJOR` | Changement cassant | `1.1.1` → `2.0.0` |
+
+### Test d'intégration Docker (integration_test)
+
+Le job construit et démarre deux conteneurs Docker :
+
+1. **MySQL** (`migration-ynov`) — image avec les migrations SQL pré-chargées
+2. **API Python** (`api-ynov`) — FastAPI exposant `GET /users`
+
+Il vérifie ensuite que l'endpoint répond HTTP 200 avec des données non vides.
+Si le test passe, l'image API est poussée automatiquement sur Docker Hub.
+
+## Images Docker
+
+| Image | Description |
+| --- | --- |
+| `migration-ynov` | MySQL 9.2 avec migrations SQL (base `ynov_ci`, table `utilisateur`) |
+| `api-ynov` | FastAPI Python exposant `GET /users` sur le port 8000 |
+
 ## Structure du projet
 
 ```text
-my-app/
-├── src/
-│   ├── pages/
-│   │   ├── Home.js          - Page d'accueil (compteur d'utilisateurs)
-│   │   └── Register.js      - Page formulaire d'inscription avec validation
-│   ├── tests/
-│   │   ├── home.test.js     - Tests unitaires du composant Home
-│   │   ├── register.test.js - Tests d'integration du formulaire (scenario chaotique)
-│   │   ├── app.test.js      - Tests d'integration API avec jest.mock('axios')
-│   │   ├── api.test.js      - Tests unitaires des fonctions Axios (countUsers, getAllUsers, postUser)
-│   │   ├── module.test.js   - Tests unitaires de calculateAge
-│   │   └── validator.test.js - Tests unitaires des validateurs
-│   ├── App.js               - Composant racine avec routeur et etat global
-│   ├── api.js               - Fonctions Axios (countUsers, getAllUsers, postUser)
-│   ├── module.js            - Fonction de calcul d'age
-│   └── validator.js         - Fonctions de validation (age, email, CP, identite, ville)
-├── cypress/
-│   └── e2e/
-│       └── navigation.cy.js - Tests E2E avec cy.intercept (201, 400, 500)
-└── TEST_PLAN.md             - Plan de test et documentation des cas testes
+.
+├── api/
+│   ├── main.py              - API FastAPI exposant GET /users
+│   ├── requirements.txt     - Dependances Python
+│   ├── Dockerfile           - Image Python 3.11-alpine
+│   └── .dockerignore
+├── my-app/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── Home.js          - Page d'accueil (compteur d'utilisateurs)
+│   │   │   └── Register.js      - Page formulaire d'inscription avec validation
+│   │   ├── tests/
+│   │   │   ├── home.test.js     - Tests unitaires du composant Home
+│   │   │   ├── register.test.js - Tests d'integration du formulaire (scenario chaotique)
+│   │   │   ├── app.test.js      - Tests d'integration API avec jest.mock('axios')
+│   │   │   ├── api.test.js      - Tests unitaires des fonctions Axios
+│   │   │   ├── module.test.js   - Tests unitaires de calculateAge
+│   │   │   └── validator.test.js - Tests unitaires des validateurs
+│   │   ├── App.js               - Composant racine avec routeur et etat global
+│   │   ├── api.js               - Fonctions Axios (countUsers, getAllUsers, postUser)
+│   │   ├── module.js            - Fonction de calcul d'age
+│   │   └── validator.js         - Fonctions de validation (age, email, CP, identite, ville)
+│   ├── sqlfiles/
+│   │   ├── migration-v001.sql   - CREATE DATABASE ynov_ci
+│   │   ├── migration-v002.sql   - CREATE TABLE utilisateur
+│   │   ├── migration-v003.sql   - INSERT utilisateurs
+│   │   └── migration-v004.sql   - CREATE TABLE admin + INSERT
+│   ├── cypress/
+│   │   └── e2e/
+│   │       └── navigation.cy.js - Tests E2E avec cy.intercept (201, 400, 500)
+│   ├── Dockerfile               - Image MySQL 9.2 avec migrations
+│   └── TEST_PLAN.md             - Plan de test et documentation des cas testes
+└── .github/workflows/
+    └── build_test_react.yml     - Pipeline CI/CD (build/test → publish/integration → deploy)
 ```
