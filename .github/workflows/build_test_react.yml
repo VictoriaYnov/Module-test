@@ -115,6 +115,14 @@ jobs:
             echo "Waiting for MySQL... ($i/30)"
             sleep 2
           done
+          for i in $(seq 1 30); do
+            if docker exec mysql mysql -u root -p${{ secrets.MYSQL_ROOT_PASSWORD }} -e "USE ynov_ci;" 2>/dev/null; then
+              echo "Database ynov_ci is ready"
+              break
+            fi
+            echo "Waiting for migrations... ($i/30)"
+            sleep 2
+          done
       - name: Start API container
         run: |
           docker run -d --name api \
@@ -126,7 +134,15 @@ jobs:
             -p 8000:8000 \
             api-ynov
       - name: Wait for API to be ready
-        run: sleep 5
+        run: |
+          for i in $(seq 1 30); do
+            if curl -s http://localhost:8000/users > /dev/null 2>&1; then
+              echo "API is ready"
+              break
+            fi
+            echo "Waiting for API... ($i/30)"
+            sleep 2
+          done
       - name: Test GET /users
         run: |
           HTTP_CODE=$(curl -s -o /tmp/response.json -w "%{http_code}" http://localhost:8000/users)
@@ -143,8 +159,8 @@ jobs:
       - name: Push API image to Docker Hub
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker tag api-ynov ${{ secrets.DOCKER_USERNAME }}/api-ynov:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/api-ynov:latest
+          docker tag api-ynov ${{ secrets.DOCKER_USERNAME }}/api-ynov:0.0.1
+          docker push ${{ secrets.DOCKER_USERNAME }}/api-ynov:0.0.1
 
   deploy:
     needs: [publish_npm, integration_test]
