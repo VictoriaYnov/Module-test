@@ -12,9 +12,9 @@ services:
     volumes:
       - ../my-app/sqlfiles:/docker-entrypoint-initdb.d/
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      test: ["CMD-SHELL", "mysql -u root -p$$MYSQL_ROOT_PASSWORD -e 'USE ynov_ci' 2>/dev/null"]
       interval: 5s
-      retries: 10
+      retries: 20
       start_period: 30s
 
   api:
