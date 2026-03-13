@@ -110,6 +110,11 @@ jobs:
             echo "Waiting for API... ($i/30)"
             sleep 2
           done
+      - name: Show logs
+        working-directory: ./api
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        run: docker compose logs
       - name: Check all containers are running
         working-directory: ./api
         env:
