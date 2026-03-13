@@ -1,0 +1,43 @@
+services:
+
+  db:
+    build:
+      context: ../my-app
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - 3306:3306
+    volumes:
+      - ../my-app/sqlfiles:/docker-entrypoint-initdb.d/
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      retries: 10
+      start_period: 30s
+
+  api:
+    image: api-ynov
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - MYSQL_DATABASE=ynov_ci
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - DB_HOST=db
+    ports:
+      - 8000:8000
+
+  adminer:
+    depends_on:
+      db:
+        condition: service_healthy
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

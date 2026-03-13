@@ -95,44 +95,11 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v2
-      - name: Build Docker images
-        run: |
-          docker build -t migration-ynov ./my-app
-          docker build -t api-ynov ./api
-      - name: Start MySQL container
-        run: |
-          docker run -d --name mysql \
-            -p 3306:3306 \
-            -e MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} \
-            migration-ynov
-      - name: Wait for MySQL to be ready
-        run: |
-          for i in $(seq 1 30); do
-            if docker exec mysql mysqladmin ping -h localhost -u root -p${{ secrets.MYSQL_ROOT_PASSWORD }} --silent 2>/dev/null; then
-              echo "MySQL is ready"
-              break
-            fi
-            echo "Waiting ($i/30)"
-            sleep 2
-          done
-          for i in $(seq 1 30); do
-            if docker exec mysql mysql -u root -p${{ secrets.MYSQL_ROOT_PASSWORD }} -e "USE ynov_ci;" 2>/dev/null; then
-              echo "Database ynov_ci is ready"
-              break
-            fi
-            echo "Waiting ($i/30)"
-            sleep 2
-          done
-      - name: Start API container
-        run: |
-          docker run -d --name api \
-            --add-host=host.docker.internal:host-gateway \
-            -e MYSQL_DATABASE=ynov_ci \
-            -e MYSQL_USER=root \
-            -e MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} \
-            -e DB_HOST=host.docker.internal \
-            -p 8000:8000 \
-            api-ynov
+      - name: Start services with docker-compose
+        working-directory: ./api
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        run: docker-compose up -d --build
       - name: Wait for API to be ready
         run: |
           for i in $(seq 1 30); do
@@ -140,9 +107,18 @@ jobs:
               echo "API is ready"
               break
             fi
-            echo "Waiting ($i/30)"
+            echo "Waiting for API... ($i/30)"
             sleep 2
           done
+      - name: Check all containers are running
+        working-directory: ./api
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        run: |
+          docker-compose ps
+          docker-compose ps | grep -q "api" || (echo "FAIL: api container not running" && exit 1)
+          docker-compose ps | grep -q "db" || (echo "FAIL: db container not running" && exit 1)
+          echo "All containers are running"
       - name: Test GET /users
         run: |
           HTTP_CODE=$(curl -s -o /tmp/response.json -w "%{http_code}" http://localhost:8000/users)
@@ -159,8 +135,8 @@ jobs:
       - name: Push API image to Docker Hub
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker tag api-ynov ${{ secrets.DOCKER_USERNAME }}/api-ynov:0.0.1
-          docker push ${{ secrets.DOCKER_USERNAME }}/api-ynov:0.0.1
+          docker tag api-ynov ${{ secrets.DOCKER_USERNAME }}/api-ynov:0.0.2
+          docker push ${{ secrets.DOCKER_USERNAME }}/api-ynov:0.0.2
 
   deploy:
     needs: [publish_npm, integration_test]
