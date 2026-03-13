@@ -99,7 +99,7 @@ jobs:
         working-directory: ./api
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-        run: docker-compose up -d --build
+        run: docker compose up -d --build
       - name: Wait for API to be ready
         run: |
           for i in $(seq 1 30); do
@@ -115,9 +115,9 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
         run: |
-          docker-compose ps
-          docker-compose ps | grep -q "api" || (echo "FAIL: api container not running" && exit 1)
-          docker-compose ps | grep -q "db" || (echo "FAIL: db container not running" && exit 1)
+          docker compose ps
+          docker compose ps | grep -q "api" || (echo "FAIL: api container not running" && exit 1)
+          docker compose ps | grep -q "db" || (echo "FAIL: db container not running" && exit 1)
           echo "All containers are running"
       - name: Test GET /users
         run: |
