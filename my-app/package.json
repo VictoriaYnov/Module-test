@@ -21,6 +21,8 @@
     "test": "react-scripts test --coverage --watchAll=false --collectCoverageFrom=!src/reportWebVitals.js --collectCoverageFrom=!src/index.js",
     "jsdoc": "jsdoc -R ./README.md -c ./jsdoc.config.json -r -d ./public/docs",
     "cypress": "cypress open",
+    "cypress:api-up": "cypress run --spec cypress/e2e/api-up.cy.js",
+    "cypress:api-down": "cypress run --spec cypress/e2e/api-down.cy.js",
     "eject": "react-scripts eject",
     "build-npm-ci": "rm -rf dist && mkdir dist && NODE_ENV=production babel src --out-dir dist --copy-files"
   },
@@ -44,6 +46,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
+    "@cypress/grep": "^4.1.0",
     "cypress": "^15.10.0",
     "jsdoc": "^4.0.5"
   },

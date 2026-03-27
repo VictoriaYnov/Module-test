@@ -21,7 +21,7 @@ function Home({ usersCount, apiError }) {
       <h1>Utilisateurs inscrits</h1>
       {apiError
         ? <p data-testid="api-error" className="api-error">{apiError}</p>
-        : <p data-testid="user-count" className="user-count">{usersCount} utilisateur{usersCount > 1 ? 's' : ''} inscrit{usersCount > 1 ? 's' : ''}</p>
+        : <p data-testid="user-count" data-cy="users-count" className="user-count">{usersCount} utilisateur{usersCount > 1 ? 's' : ''} inscrit{usersCount > 1 ? 's' : ''}</p>
       }
     </div>
   );

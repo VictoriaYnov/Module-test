@@ -26,14 +26,6 @@ jobs:
           npm run jsdoc
           npm run build --if-present
           npm test
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: ./my-app
-          build: npm run build
-          start: npm start
-        env:
-          REACT_APP_SERVER_URL: ${{ secrets.REACT_APP_SERVER_URL }}
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
@@ -132,6 +124,37 @@ jobs:
             exit 1
           fi
           echo "PASS: $BODY"
+      - name: Wait for React to be ready
+        run: |
+          for i in $(seq 1 30); do
+            if curl -s http://localhost:3000 > /dev/null 2>&1; then
+              echo "React is ready"
+              break
+            fi
+            echo "Waiting for React... ($i/30)"
+            sleep 2
+          done
+      - name: Cypress E2E - tests nominaux et 400 (API active)
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: ./my-app
+          command: npx cypress run --spec cypress/e2e/api-up.cy.js
+        env:
+          REACT_APP_SERVER_URL: http://localhost:8000
+
+      - name: Arrêt du conteneur API
+        working-directory: ./api
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        run: docker compose stop api
+
+      - name: Cypress E2E - tests 500 (API arrêtée)
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: ./my-app
+          command: npx cypress run --spec cypress/e2e/api-down.cy.js
+        env:
+          REACT_APP_SERVER_URL: http://localhost:8000
       - name: Push API image to Docker Hub
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin

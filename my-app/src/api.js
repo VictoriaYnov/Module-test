@@ -11,7 +11,7 @@ const API = process.env.REACT_APP_SERVER_URL || 'https://jsonplaceholder.typicod
 export const countUsers = async () => {
   try {
     const response = await axios.get(`${API}/users`);
-    return response.data.length;
+    return response.data.utilisateurs.length;
   } catch (error) {
     throw error;
   }
@@ -26,7 +26,7 @@ export const countUsers = async () => {
 export const getAllUsers = async () => {
   try {
     const response = await axios.get(`${API}/users`);
-    return response.data;
+    return response.data.utilisateurs;
   } catch (error) {
     throw error;
   }

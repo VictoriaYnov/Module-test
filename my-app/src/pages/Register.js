@@ -69,7 +69,7 @@ function Register({ addUser }) {
     } catch (error) {
       // Erreur métier (400) : message spécifique du back
       if (error.response?.status === 400) {
-        setToast(error.response.data?.message || 'Cet email est déjà utilisé.');
+        setToast(error.response.data?.detail?.message || 'Cet email est déjà utilisé.');
       } else {
         // Crash serveur (500) ou erreur réseau
         setToast('Le serveur est indisponible. Veuillez réessayer plus tard.');
