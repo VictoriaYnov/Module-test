@@ -44,6 +44,9 @@
       "last 1 safari version"
     ]
   },
+  "overrides": {
+    "typescript": "4.9.5"
+  },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@cypress/grep": "^4.1.0",
