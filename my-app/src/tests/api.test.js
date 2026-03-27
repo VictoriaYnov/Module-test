@@ -14,7 +14,7 @@ describe('countUsers', () => {
   // Cas nominal : l'API retourne un tableau de 10 utilisateurs
   // countUsers() doit renvoyer la longueur du tableau, pas le tableau lui-meme
   it('should return the number of users', async () => {
-    axios.get.mockResolvedValue({ data: mockUsers });
+    axios.get.mockResolvedValue({ data: { utilisateurs: mockUsers } });
     await expect(countUsers()).resolves.toBe(10);
   });
 
@@ -30,7 +30,7 @@ describe('getAllUsers', () => {
   // Cas nominal : l'API retourne le tableau complet
   // getAllUsers() doit renvoyer le tableau tel quel
   it('should return the full list of users', async () => {
-    axios.get.mockResolvedValue({ data: mockUsers });
+    axios.get.mockResolvedValue({ data: { utilisateurs: mockUsers } });
     await expect(getAllUsers()).resolves.toEqual(mockUsers);
   });
 

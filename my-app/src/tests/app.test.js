@@ -29,7 +29,7 @@ describe('App - Tests d\'intégration avec API (Axios)', () => {
 
   // Succès GET : le compteur affiche le bon nombre au chargement
   it('should display user count fetched from API on load', async () => {
-    axios.get.mockResolvedValue({ data: mockUsers });
+    axios.get.mockResolvedValue({ data: { utilisateurs: mockUsers } });
     render(<App />);
 
     await waitFor(() => {
@@ -50,7 +50,7 @@ describe('App - Tests d\'intégration avec API (Axios)', () => {
 
   // Succès POST (201) : inscription réussie → toast vert + compteur incrémenté
   it('should show success toast and increment counter after successful registration', async () => {
-    axios.get.mockResolvedValue({ data: mockUsers });
+    axios.get.mockResolvedValue({ data: { utilisateurs: mockUsers } });
     axios.post.mockResolvedValue({ data: { id: 101 } });
 
     render(<App />);
@@ -95,7 +95,7 @@ describe('App - Tests d\'intégration avec API (Axios)', () => {
 
   // Erreur métier (400) : email déjà utilisé → toast rouge avec le message du back
   it('should show backend error message in toast when POST returns 400', async () => {
-    axios.get.mockResolvedValue({ data: mockUsers });
+    axios.get.mockResolvedValue({ data: { utilisateurs: mockUsers } });
     const error400 = new Error('Bad Request');
     error400.response = { status: 400, data: { message: 'Cet email est déjà utilisé.' } };
     axios.post.mockRejectedValue(error400);
@@ -128,7 +128,7 @@ describe('App - Tests d\'intégration avec API (Axios)', () => {
 
   // Crash serveur (500) : toast d'alerte + l'application ne plante pas
   it('should show server error toast and not crash when POST returns 500', async () => {
-    axios.get.mockResolvedValue({ data: mockUsers });
+    axios.get.mockResolvedValue({ data: { utilisateurs: mockUsers } });
     const error500 = new Error('Internal Server Error');
     error500.response = { status: 500 };
     axios.post.mockRejectedValue(error500);
